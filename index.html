@@ -1,1 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مكتب الذكاء الاصطناعي الكامل - المطور الأستاذ عمر حسان عبره</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Tahoma, Arial, sans-serif; background: #f1f5f9; color: #0f172a; margin: 0; padding: 12px; line-height: 1.5; }
+    .wrap { max-width: 1020px; margin: auto; }
+    .box { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    h1, h2, h3 { margin-top: 0; color: #0f766e; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .tab-btn { background: #e2e8f0; color: #0f172a; border: none; padding: 9px 14px; border-radius: 7px; cursor: pointer; font-weight: bold; }
+    .tab-btn.active { background: #0f766e; color: #ffffff; }
+    .section { display: none; }
+    .section.active { display: block; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .emp-card { border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; background: #f8fafc; cursor: pointer; }
+    .emp-card.selected { border: 2px solid #0f766e; background: #f0fdfa; }
+    .chat-box { height: 240px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
+    .msg { padding: 8px 10px; border-radius: 6px; margin-bottom: 8px; white-space: pre-wrap; font-size: 14px; }
+    .msg.user { background: #dbeafe; }
+    .msg.ai { background: #dcfce7; }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; }
+    input[type="text"], textarea, select { width: 100%; padding: 9px; border: 1px solid #94a3b8; border-radius: 6px; font-family: inherit; font-size: 14px; }
+    .flex-grow { flex: 1; min-width: 200px; }
+    button { background: #0f766e; color: #fff; border: none; padding: 9px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    button.gray { background: #475569; }
+    button.green { background: #15803d; }
+    .approval { border: 1px dashed #d97706; background: #fffbeb; border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 10px; border-radius: 8px; overflow-x: auto; font-size: 12px; direction: ltr; text-align: left; }
+    .footer { text-align: center; font-size: 13px; color: #475569; padding: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="box">
+      <h1>مكتب الذكاء الاصطناعي والعمليات (ملف واحد متكامل)</h1>
+      <p>تشغيل سريع عبر <strong>text.pollinations.ai</strong> بدون مفاتيح معقدة، مع تقسيم الأدوار، صندوق اعتماد، رسالة عملاء جاهزة، وإعداد العمل التلقائي في الخلفية.</p>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="officeTab">1. المكتب والموظفون</button>
+        <button class="tab-btn" data-tab="approvalsTab">2. صندوق الموافقة</button>
+        <button class="tab-btn" data-tab="salesTab">3. عرض العملاء وواتساب</button>
+        <button class="tab-btn" data-tab="cloudTab">4. العمل أثناء قفل الهاتف</button>
+      </div>
+    </div>
 
+    <!-- القسم 1: المكتب والموظفون -->
+    <div id="officeTab" class="section active">
+      <div class="box">
+        <h3>اختر موظفاً لإسناد مهمة (أو إرسال للكل)</h3>
+        <div class="team-grid" id="teamGrid"></div>
+        <h3 id="currentAgentHeading">المحادثة مع: رامي — مدير العمليات</h3>
+        <div class="chat-box" id="chatBox"></div>
+        <div class="row">
+          <input type="text" id="taskInput" class="flex-grow" placeholder="اكتب المهمة هنا... مثال: صغ خطة لمتابعة 10 عيادات ومختبرات" />
+          <button id="sendTaskBtn">إرسال المهمة</button>
+          <button id="sendAllBtn" class="gray">إرسال للفريق</button>
+          <button id="resetDataBtn" class="gray">مسح السجل</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- القسم 2: صندوق الموافقة -->
+    <div id="approvalsTab" class="section">
+      <div class="box">
+        <h3>المخرجات الجاهزة بانتظار موافقتك</h3>
+        <div id="approvalsList">لا توجد مخرجات بانتظار الاعتماد حالياً.</div>
+      </div>
+    </div>
+
+    <!-- القسم 3: عرض العملاء وواتساب -->
+    <div id="salesTab" class="section">
+      <div class="box">
+        <h3>مولّد رسالة واتساب وعرض سريع للعملاء</h3>
+        <div class="row" style="margin-bottom:8px;">
+          <input type="text" id="clientName" class="flex-grow" placeholder="اسم المنشأة أو العميل (مثال: مختبر الشفاء)" />
+          <input type="text" id="demoLink" class="flex-grow" placeholder="رابط المعاينة التجريبية (اختياري)" />
+        </div>
+        <button id="generatePitchBtn" style="margin-bottom:10px;">توليد الرسالة المخصصة</button>
+        <textarea id="pitchOutput" rows="10">السلام عليكم ورحمة الله وبركاته أستاذ/دكتور [اسم المنشأة] 👋
+
+جهّزنا معاينة رقمية تفاعلية سريعة وخفيفة مخصصة لـ [اسم المنشأة] تعمل على جميع الهواتف بدون تحميل أي تطبيق، وتساعدكم على:
+• عرض الخدمات والأقسام بوضوح يرفع ثقة الزوار.
+• الرد السريع على الاستفسارات وتوجيه الزائر لطلب الحجز مباشرة عبر واتساب.
+• تنظيم طلبات العملاء وتقليل ضغط الاستقبال.
+
+🔗 رابط المعاينة التجريبية: [الرابط]
+
+يمكن تفعيل نسخة تجريبية مجانية لمدة 7 أيام باسم منشأتكم لتجربتها عملياً. هل يناسبكم إرسال تفاصيل الباقة؟
+
+المطور الأستاذ عمر حسان عبره
+واتساب: 00967737219181 | البريد: omarebrah2060@gmail.com</textarea>
+        <div class="row" style="margin-top:8px;">
+          <button id="copyPitchBtn" class="green">نسخ الرسالة</button>
+          <a id="waLinkBtn" target="_blank" style="text-decoration:none;"><button type="button">فتح واتساب مباشرة</button></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- القسم 4: العمل أثناء قفل الهاتف -->
+    <div id="cloudTab" class="section">
+      <div class="box">
+        <h3>كيف يعمل النظام وأنت قافل هاتفك؟</h3>
+        <p>ملف <strong>index.html</strong> يعمل في المتصفح عندما تفتحه، أما التشغيل التلقائي والهاتف مغلق فيتم عبر جدولة سحابية (مثل <strong>GitHub Actions</strong>) تستدعي <code>text.pollinations.ai</code> وتخزن النتائج في المستودع لتجدها جاهزة عند فتح هاتفك.</p>
+        <pre>name: Auto AI Office Task
+on:
+  schedule:
+    - cron: "0 6 * * *" # كل يوم الساعة 06:00 UTC
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p reports
+          ENC=$(node -e "console.log(encodeURIComponent('أنت سكرتير المكتب. لخص خطوات متابعة العملاء اليومية في 4 نقاط مختصرة.'))")
+          curl -s "https://text.pollinations.ai/${ENC}" > "reports/daily-$(date +%F).md"
+          git config user.name "OfficeBot" && git config user.email "bot@example.com"
+          git add reports/ && git diff --staged --quiet || (git commit -m "تقرير $(date +%F)" && git push)</pre>
+      </div>
+    </div>
+
+    <div class="footer">
+      تصميم المطور الأستاذ عمر حسان عبره | واتساب: 00967737219181 | omarebrah2060@gmail.com
+    </div>
+  </div>
+
+  <script>
+    const AGENTS = [
+      {
+        id: "manager",
+        name: "رامي — مدير العمليات",
+        role: "تقسيم المهام وتنسيق التنفيذ",
+        perms: "يخطط ولا يرسل للخارج دون اعتمادك",
+        prompt: "أنت رامي مدير العمليات. قسّم المهمة إلى خطوات عملية مختصرة وواضحة وحدد الأولوية."
+      },
+      {
+        id: "writer",
+        name: "سارة — مختصة العروض",
+        role: "صياغة رسائل وعروض العملاء",
+        perms: "مسودات العروض والرسائل فقط",
+        prompt: "أنت سارة مختصة العروض والمحتوى. اكتب رسالة أو عرضاً مقنعاً ومختصراً ومباشراً للعملاء."
+      },
+      {
+        id: "secretary",
+        name: "عمر — السكرتير والمتابعة",
+        role: "تنظيم الجداول والمتابعة اليومية",
+        perms: "تنظيم المهام والتذكيرات فقط",
+        prompt: "أنت عمر السكرتير. نظّم العمل في نقاط واضحة وجدول متابعة عملي."
+      },
+      {
+        id: "auditor",
+        name: "طارق — مراجع الجودة والأمان",
+        role: "فحص المخرجات واكتشاف النواقص",
+        perms: "مراجعة وتنقيح فقط بدون نشر",
+        prompt: "أنت طارق مراجع الجودة والأمان. راجع المطلوب، اذكر ملاحظتين عمليتين، وقدّم صياغة منقحة."
+      }
+    ];
+
+    const STORAGE_KEY = "single_file_ai_office_v1";
+    let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"chats":{},"approvals":[]}');
+    let selectedAgent = AGENTS[0];
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    async function askPollinations(systemPrompt, taskText) {
+      const fullPrompt =
+        "أجب بالعربية بوضوح واختصار عملي.\n" +
+        "الدور: " + systemPrompt + "\n" +
+        "المهمة: " + taskText;
+      const url = "https://text.pollinations.ai/" + encodeURIComponent(fullPrompt);
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("خطأ في الشبكة");
+      return await res.text();
+    }
+
+    // التبويبات
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+        if (btn.dataset.tab === "approvalsTab") renderApprovals();
+      };
+    });
+
+    function renderTeam() {
+      const grid = document.getElementById("teamGrid");
+      grid.innerHTML = "";
+      AGENTS.forEach(agent => {
+        const card = document.createElement("div");
+        card.className = "emp-card" + (agent.id === selectedAgent.id ? " selected" : "");
+        card.innerHTML = `<strong>${agent.name}</strong><div>${agent.role}</div><small>${agent.perms}</small>`;
+        card.onclick = () => {
+          selectedAgent = agent;
+          document.getElementById("currentAgentHeading").textContent = "المحادثة مع: " + agent.name;
+          renderTeam();
+          renderChat();
+        };
+        grid.appendChild(card);
+      });
+    }
+
+    function renderChat() {
+      const box = document.getElementById("chatBox");
+      const msgs = state.chats[selectedAgent.id] || [];
+      box.innerHTML = msgs.length
+        ? msgs.map(m => `<div class="msg ${m.role}">${m.text}</div>`).join("")
+        : "<div>أرسل مهمة لهذا الموظف للبدء...</div>";
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function addApproval(agentName, task, reply) {
+      state.approvals.unshift({
+        id: Date.now() + Math.random(),
+        agentName,
+        task,
+        reply,
+        status: "بانتظار الموافقة"
+      });
+      saveState();
+    }
+
+    window.setApprovalStatus = function (id, status) {
+      state.approvals = state.approvals.map(item => item.id === id ? { ...item, status } : item);
+      saveState();
+      renderApprovals();
+    };
+
+    function renderApprovals() {
+      const list = document.getElementById("approvalsList");
+      if (!state.approvals.length) {
+        list.innerHTML = "لا توجد مخرجات بانتظار الاعتماد حالياً.";
+        return;
+      }
+      list.innerHTML = state.approvals.map(item => `
+        <div class="approval">
+          <strong>${item.agentName}</strong> — <span>الحالة: ${item.status}</span>
+          <p><strong>المهمة:</strong> ${item.task}</p>
+          <div style="white-space:pre-wrap; background:#fff; padding:8px; border-radius:6px; margin-bottom:8px;">${item.reply}</div>
+          <button class="green" onclick="setApprovalStatus(${item.id}, 'معتمد')">اعتماد</button>
+          <button class="gray" onclick="setApprovalStatus(${item.id}, 'مرفوض')">رفض</button>
+        </div>
+      `).join("");
+    }
+
+    async function runForAgent(agent, task) {
+      if (!state.chats[agent.id]) state.chats[agent.id] = [];
+      state.chats[agent.id].push({ role: "user", text: task });
+      state.chats[agent.id].push({ role: "ai", text: "جاري التنفيذ..." });
+      saveState();
+      if (agent.id === selectedAgent.id) renderChat();
+
+      try {
+        const reply = await askPollinations(agent.prompt, task);
+        state.chats[agent.id].pop();
+        state.chats[agent.id].push({ role: "ai", text: reply });
+        addApproval(agent.name, task, reply);
+      } catch (e) {
+        state.chats[agent.id].pop();
+        state.chats[agent.id].push({ role: "ai", text: "تعذر إتمام الطلب الآن، يرجى المحاولة مرة أخرى." });
+        saveState();
+      }
+      if (agent.id === selectedAgent.id) renderChat();
+    }
+
+    document.getElementById("sendTaskBtn").onclick = async () => {
+      const input = document.getElementById("taskInput");
+      const task = input.value.trim();
+      if (!task) return;
+      input.value = "";
+      await runForAgent(selectedAgent, task);
+    };
+
+    document.getElementById("sendAllBtn").onclick = async () => {
+      const input = document.getElementById("taskInput");
+      const task = input.value.trim();
+      if (!task) return;
+      input.value = "";
+      for (const ag of AGENTS) {
+        await runForAgent(ag, task);
+      }
+    };
+
+    document.getElementById("resetDataBtn").onclick = () => {
+      state = { chats: {}, approvals: [] };
+      saveState();
+      renderChat();
+      renderApprovals();
+    };
+
+    // تبويب العملاء وواتساب
+    function updateWaLink() {
+      const txt = document.getElementById("pitchOutput").value;
+      document.getElementById("waLinkBtn").href = "https://wa.me/?text=" + encodeURIComponent(txt);
+    }
+
+    document.getElementById("generatePitchBtn").onclick = () => {
+      const name = document.getElementById("clientName").value.trim() || "منشأتكم الموقرة";
+      const link = document.getElementById("demoLink").value.trim() || "سيتم إرساله فور التجهيز";
+      document.getElementById("pitchOutput").value =
+`السلام عليكم ورحمة الله وبركاته أستاذ/دكتور ${name} 👋
+
+جهّزنا معاينة رقمية تفاعلية سريعة وخفيفة مخصصة لـ ${name} تعمل على جميع الهواتف بدون تحميل أي تطبيق، وتساعدكم على:
+• عرض الخدمات والأقسام بوضوح يرفع ثقة الزوار.
+• الرد السريع على الاستفسارات وتوجيه الزائر لطلب الحجز مباشرة عبر واتساب.
+• تنظيم طلبات العملاء وتقليل ضغط الاستقبال.
+
+🔗 رابط المعاينة التجريبية: ${link}
+
+يمكن تفعيل نسخة تجريبية مجانية لمدة 7 أيام باسم منشأتكم لتجربتها عملياً. هل يناسبكم إرسال تفاصيل الباقة؟
+
+المطور الأستاذ عمر حسان عبره
+واتساب: 00967737219181 | البريد: omarebrah2060@gmail.com`;
+      updateWaLink();
+    };
+
+    document.getElementById("copyPitchBtn").onclick = () => {
+      const el = document.getElementById("pitchOutput");
+      el.select();
+      document.execCommand("copy");
+    };
+
+    document.getElementById("pitchOutput").addEventListener("input", updateWaLink);
+    updateWaLink();
+
+    renderTeam();
+    renderChat();
+    renderApprovals();
+  </script>
+</body>
+</html>
