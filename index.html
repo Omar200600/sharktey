@@ -25,10 +25,15 @@
     .badge { display: inline-block; font-size: 11px; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px; font-weight: bold; }
     .badge-ceo { background: #f59e0b; color: #fff; }
     .badge-venture { background: #2563eb; color: #fff; }
-    .chat-box { height: 260px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
-    .msg { padding: 8px 10px; border-radius: 6px; margin-bottom: 8px; white-space: pre-wrap; font-size: 14px; }
-    .msg.user { background: #dbeafe; }
-    .msg.ai { background: #dcfce7; }
+    .chat-box { height: 280px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
+    .msg-wrap { border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; border: 1px solid #cbd5e1; }
+    .msg-wrap.user { background: #eff6ff; border-color: #bfdbfe; }
+    .msg-wrap.ai { background: #f0fdf4; border-color: #bbf7d0; }
+    .msg-text { white-space: pre-wrap; font-size: 14px; margin-bottom: 6px; }
+    .msg-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+    .mini-btn { font-size: 11px; padding: 4px 9px; border-radius: 5px; font-weight: bold; cursor: pointer; border: none; color: #fff; background: #334155; }
+    .mini-btn.copy { background: #0284c7; }
+    .mini-btn.del { background: #dc2626; }
     .row { display: flex; flex-wrap: wrap; gap: 8px; }
     input[type="text"], textarea, select { width: 100%; padding: 9px; border: 1px solid #94a3b8; border-radius: 6px; font-family: inherit; font-size: 14px; }
     .flex-grow { flex: 1; min-width: 200px; }
@@ -37,18 +42,26 @@
     button.green { background: #15803d; }
     button.gold { background: #b45309; }
     button.blue { background: #1d4ed8; }
+    button.red { background: #dc2626; }
     button.quick-btn { background: #0f766e; font-size: 12px; padding: 7px 11px; }
     button.quick-btn.ceo-q { background: #b45309; }
     button.quick-btn.venture-q { background: #1d4ed8; }
-    .approval { border: 1px dashed #d97706; background: #fffbeb; border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+    .approval { border: 1px dashed #d97706; background: #fffbeb; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+    .approval.approved { border: 2px solid #15803d; background: #f0fdf4; }
+    .approval.rejected { border: 2px solid #dc2626; background: #fef2f2; }
+    .status-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: bold; background: #fef3c7; color: #92400e; }
+    .status-tag.approved { background: #dcfce7; color: #166534; }
+    .status-tag.rejected { background: #fee2e2; color: #991b1b; }
     .pipeline-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 10px; margin-bottom: 12px; }
     .brief-box { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 13px; }
     .quick-bar { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; margin-bottom: 12px; }
+    .toast { position: fixed; bottom: 16px; left: 16px; background: #0f172a; color: #fff; padding: 9px 14px; border-radius: 8px; font-size: 13px; z-index: 999; display: none; }
     pre { background: #0f172a; color: #e2e8f0; padding: 10px; border-radius: 8px; overflow-x: auto; font-size: 12px; direction: ltr; text-align: left; }
     .footer { text-align: center; font-size: 13px; color: #475569; padding: 8px; }
   </style>
 </head>
 <body>
+  <div id="toast" class="toast"></div>
   <div class="wrap">
     <div class="box">
       <h1>مكتب الذكاء الاصطناعي والقيادة التنفيذية (ملف واحد متكامل)</h1>
@@ -64,7 +77,6 @@
     <!-- القسم 1: المكتب والموظفون -->
     <div id="officeTab" class="section active">
       <div class="box">
-        <!-- مرجع التوجيه المعتمد من الأستاذ عمر -->
         <div class="brief-box">
           <strong>📌 التوجيه المعتمد للمكتب (المرحلة الأولى — 90 يوماً):</strong>
           <ul style="margin:6px 0 8px 0; padding-right:18px;">
@@ -75,7 +87,6 @@
           <button id="injectWeekOneDirectiveBtn" class="blue">📋 تحميل توجيه الأسبوع الأول للفريق في حقل الإرسال</button>
         </div>
 
-        <!-- لوحة التشغيل التلقائي للمشاريع الربحية -->
         <div class="pipeline-box">
           <strong>🚀 غرفة إطلاق المشاريع الربحية (زياد + المدير التنفيذي فيصل):</strong>
           <p style="margin: 4px 0 8px 0; font-size: 13px;">اضغط الزر ليقوم <b>زياد</b> بدراسة السوق واختيار مشروع ربحي عملي وتجهيز خطة قناة يوتيوب وفيديوهات، ثم يقوم <b>فيصل (المدير التنفيذي)</b> بمراجعتها وتوزيع المهام على بقية الفريق تلقائياً:</p>
@@ -85,7 +96,6 @@
           </div>
         </div>
 
-        <!-- أزرار التوجيه السريع لكل موظف -->
         <div class="quick-bar">
           <div style="font-weight:bold; font-size:13px; margin-bottom:6px;">⚡ أزرار التوجيه السريع الفردي (اختر الموظف لتعبئة توجيهه المخصص فوراً):</div>
           <div class="row" id="quickDirectivesRow"></div>
@@ -243,9 +253,78 @@ jobs:
       }
     ];
 
+    // الحفاظ على أي بيانات قديمة موجودة في المتصفح دون مسحها
+    const CANDIDATE_KEYS = [
+      "single_file_ai_office_v3_quick_dirs",
+      "single_file_ai_office_v2_ceo_plus",
+      "single_file_ai_office_v2_ceo",
+      "single_file_ai_office_v1"
+    ];
     const STORAGE_KEY = "single_file_ai_office_v3_quick_dirs";
-    let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"chats":{},"approvals":[]}');
+
+    function loadPreservedState() {
+      let merged = { chats: {}, approvals: [] };
+      for (const key of CANDIDATE_KEYS) {
+        const raw = localStorage.getItem(key);
+        if (!raw) continue;
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === "object") {
+            if (parsed.chats && typeof parsed.chats === "object") {
+              for (const [agentId, list] of Object.entries(parsed.chats)) {
+                if (Array.isArray(list) && list.length && (!merged.chats[agentId] || !merged.chats[agentId].length)) {
+                  merged.chats[agentId] = list.map((m, idx) => ({
+                    id: m.id || (Date.now() + idx + Math.random()),
+                    role: m.role,
+                    text: m.text
+                  }));
+                }
+              }
+            }
+            if (Array.isArray(parsed.approvals) && parsed.approvals.length && !merged.approvals.length) {
+              merged.approvals = parsed.approvals.map((item, idx) => ({
+                id: item.id || (Date.now() + idx + Math.random()),
+                agentName: item.agentName || "موظف",
+                task: item.task || "",
+                reply: item.reply || "",
+                status: item.status || "بانتظار الموافقة"
+              }));
+            }
+          }
+        } catch (e) {}
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      return merged;
+    }
+
+    let state = loadPreservedState();
     let selectedAgent = AGENTS[0];
+
+    function showToast(text) {
+      const el = document.getElementById("toast");
+      el.textContent = text;
+      el.style.display = "block";
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => { el.style.display = "none"; }, 2200);
+    }
+
+    async function copyTextSafe(text, label) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        }
+        showToast("تم نسخ " + (label || "النص") + " بنجاح");
+      } catch (e) {
+        showToast("تعذر النسخ تلقائياً");
+      }
+    }
 
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -319,11 +398,37 @@ jobs:
       });
     }
 
+    window.copyChatMsg = function (agentId, msgId) {
+      const list = state.chats[agentId] || [];
+      const found = list.find(m => String(m.id) === String(msgId));
+      if (found) copyTextSafe(found.text, "الرسالة");
+    };
+
+    window.deleteChatMsg = function (agentId, msgId) {
+      if (!confirm("هل تريد حذف هذه الرسالة فقط؟")) return;
+      state.chats[agentId] = (state.chats[agentId] || []).filter(m => String(m.id) !== String(msgId));
+      saveState();
+      renderChat();
+      showToast("تم حذف الرسالة");
+    };
+
     function renderChat() {
       const box = document.getElementById("chatBox");
       const msgs = state.chats[selectedAgent.id] || [];
       box.innerHTML = msgs.length
-        ? msgs.map(m => `<div class="msg ${m.role}">${m.text}</div>`).join("")
+        ? msgs.map((m, idx) => {
+            const mId = m.id || (idx + 1);
+            if (!m.id) m.id = mId;
+            return `
+              <div class="msg-wrap ${m.role}">
+                <div class="msg-text">${m.text}</div>
+                <div class="msg-actions">
+                  <button type="button" class="mini-btn copy" onclick="copyChatMsg('${selectedAgent.id}', '${mId}')">نسخ</button>
+                  <button type="button" class="mini-btn del" onclick="deleteChatMsg('${selectedAgent.id}', '${mId}')">حذف</button>
+                </div>
+              </div>
+            `;
+          }).join("")
         : "<div>أرسل مهمة لهذا الموظف أو اضغط أحد أزرار التوجيه السريع أعلاه للبدء...</div>";
       box.scrollTop = box.scrollHeight;
     }
@@ -340,9 +445,29 @@ jobs:
     }
 
     window.setApprovalStatus = function (id, status) {
-      state.approvals = state.approvals.map(item => item.id === id ? { ...item, status } : item);
+      state.approvals = state.approvals.map(item => String(item.id) === String(id) ? { ...item, status } : item);
       saveState();
       renderApprovals();
+      showToast("تم تحديث الحالة إلى: " + status);
+    };
+
+    window.copyApprovalItem = function (id) {
+      const item = state.approvals.find(x => String(x.id) === String(id));
+      if (!item) return;
+      const content =
+        `المسؤول: ${item.agentName}\n` +
+        `الحالة: ${item.status}\n` +
+        `المهمة: ${item.task}\n\n` +
+        `المخرج:\n${item.reply}`;
+      copyTextSafe(content, "المخرج");
+    };
+
+    window.deleteApprovalItem = function (id) {
+      if (!confirm("هل تريد حذف هذا المخرج وحده من صندوق الموافقة؟")) return;
+      state.approvals = state.approvals.filter(x => String(x.id) !== String(id));
+      saveState();
+      renderApprovals();
+      showToast("تم حذف المخرج");
     };
 
     function renderApprovals() {
@@ -351,34 +476,48 @@ jobs:
         list.innerHTML = "لا توجد مخرجات بانتظار الاعتماد حالياً.";
         return;
       }
-      list.innerHTML = state.approvals.map(item => `
-        <div class="approval">
-          <strong>${item.agentName}</strong> — <span>الحالة: ${item.status}</span>
-          <p><strong>المهمة:</strong> ${item.task}</p>
-          <div style="white-space:pre-wrap; background:#fff; padding:8px; border-radius:6px; margin-bottom:8px;">${item.reply}</div>
-          <button class="green" onclick="setApprovalStatus(${item.id}, 'معتمد')">اعتماد</button>
-          <button class="gray" onclick="setApprovalStatus(${item.id}, 'مرفوض')">رفض</button>
-        </div>
-      `).join("");
+      list.innerHTML = state.approvals.map(item => {
+        const isApproved = item.status === "معتمد";
+        const isRejected = item.status === "مرفوض";
+        const boxClass = isApproved ? "approval approved" : (isRejected ? "approval rejected" : "approval");
+        const tagClass = isApproved ? "status-tag approved" : (isRejected ? "status-tag rejected" : "status-tag");
+        return `
+          <div class="${boxClass}">
+            <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px;">
+              <strong>${item.agentName}</strong>
+              <span class="${tagClass}">الحالة: ${item.status}</span>
+            </div>
+            <p style="margin:8px 0;"><strong>المهمة:</strong> ${item.task}</p>
+            <div style="white-space:pre-wrap; background:#fff; padding:10px; border-radius:6px; border:1px solid #e2e8f0; margin-bottom:10px;">${item.reply}</div>
+            <div class="row">
+              <button type="button" class="green" onclick="setApprovalStatus('${item.id}', 'معتمد')">اعتماد</button>
+              <button type="button" class="gray" onclick="setApprovalStatus('${item.id}', 'مرفوض')">رفض</button>
+              <button type="button" class="blue" onclick="copyApprovalItem('${item.id}')">نسخ هذا المخرج</button>
+              <button type="button" class="red" onclick="deleteApprovalItem('${item.id}')">حذف هذا المخرج</button>
+            </div>
+          </div>
+        `;
+      }).join("");
     }
 
     async function runForAgent(agent, task) {
       if (!state.chats[agent.id]) state.chats[agent.id] = [];
-      state.chats[agent.id].push({ role: "user", text: task });
-      state.chats[agent.id].push({ role: "ai", text: "جاري التنفيذ..." });
+      state.chats[agent.id].push({ id: Date.now() + Math.random(), role: "user", text: task });
+      const loadingId = Date.now() + Math.random();
+      state.chats[agent.id].push({ id: loadingId, role: "ai", text: "جاري التنفيذ..." });
       saveState();
       if (agent.id === selectedAgent.id) renderChat();
 
       try {
         const reply = await askPollinations(agent.prompt, task);
-        state.chats[agent.id].pop();
-        state.chats[agent.id].push({ role: "ai", text: reply });
+        state.chats[agent.id] = state.chats[agent.id].filter(m => m.id !== loadingId);
+        state.chats[agent.id].push({ id: Date.now() + Math.random(), role: "ai", text: reply });
         addApproval(agent.name, task, reply);
         if (agent.id === selectedAgent.id) renderChat();
         return reply;
       } catch (e) {
-        state.chats[agent.id].pop();
-        state.chats[agent.id].push({ role: "ai", text: "تعذر إتمام الطلب الآن، يرجى المحاولة مرة أخرى." });
+        state.chats[agent.id] = state.chats[agent.id].filter(m => m.id !== loadingId);
+        state.chats[agent.id].push({ id: Date.now() + Math.random(), role: "ai", text: "تعذر إتمام الطلب الآن، يرجى المحاولة مرة أخرى." });
         saveState();
         if (agent.id === selectedAgent.id) renderChat();
         return null;
@@ -438,10 +577,12 @@ jobs:
     };
 
     document.getElementById("resetDataBtn").onclick = () => {
+      if (!confirm("هل أنت متأكد من مسح جميع المحادثات والمخرجات نهائياً؟")) return;
       state = { chats: {}, approvals: [] };
       saveState();
       renderChat();
       renderApprovals();
+      showToast("تم مسح السجل");
     };
 
     function updateWaLink() {
@@ -470,9 +611,7 @@ jobs:
     };
 
     document.getElementById("copyPitchBtn").onclick = () => {
-      const el = document.getElementById("pitchOutput");
-      el.select();
-      document.execCommand("copy");
+      copyTextSafe(document.getElementById("pitchOutput").value, "رسالة العميل");
     };
 
     document.getElementById("pitchOutput").addEventListener("input", updateWaLink);
