@@ -3,49 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مكتب الذكاء الاصطناعي والعملاء (8 موظفين) - المطور الأستاذ عمر حسان عبره</title>
+  <title>مكتب الذكاء الاصطناعي والمدير التنفيذي - المطور الأستاذ عمر حسان عبره</title>
   <style>
     * { box-sizing: border-box; }
     body { font-family: Tahoma, Arial, sans-serif; background: #f1f5f9; color: #0f172a; margin: 0; padding: 12px; line-height: 1.5; }
-    .wrap { max-width: 1120px; margin: auto; }
+    .wrap { max-width: 1050px; margin: auto; }
     .box { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
-    h1, h2, h3, h4 { margin-top: 0; color: #0f766e; }
+    h1, h2, h3 { margin-top: 0; color: #0f766e; }
     .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-    .tab-btn { background: #e2e8f0; color: #0f172a; border: none; padding: 9px 12px; border-radius: 7px; cursor: pointer; font-weight: bold; font-size: 13px; }
+    .tab-btn { background: #e2e8f0; color: #0f172a; border: none; padding: 9px 14px; border-radius: 7px; cursor: pointer; font-weight: bold; }
     .tab-btn.active { background: #0f766e; color: #ffffff; }
     .section { display: none; }
     .section.active { display: block; }
-    .quick-box { background: #f0fdfa; border: 1px solid #99f6e4; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
-    .research-box { background: #eff6ff; border: 1px solid #93c5fd; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
-    .trainer-box { background: #fdf4ff; border: 1px solid #e879f9; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
-    .closer-box { background: #ecfdf5; border: 1px solid #6ee7b7; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
-    .backup-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; }
-    .auth-banner { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 13px; }
-    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 12px; }
-    .emp-card { border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; background: #f8fafc; cursor: pointer; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .emp-card { border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; background: #f8fafc; cursor: pointer; transition: 0.2s; }
     .emp-card.selected { border: 2px solid #0f766e; background: #f0fdfa; }
-    .badge { display: inline-block; background: #0f766e; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 4px; margin-top: 4px; }
+    .emp-card.ceo { border-color: #d97706; background: #fffbeb; }
+    .emp-card.ceo.selected { border: 2px solid #b45309; background: #fef3c7; }
+    .emp-card.venture { border-color: #2563eb; background: #eff6ff; }
+    .emp-card.venture.selected { border: 2px solid #1d4ed8; background: #dbeafe; }
+    .badge { display: inline-block; font-size: 11px; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px; font-weight: bold; }
+    .badge-ceo { background: #f59e0b; color: #fff; }
+    .badge-venture { background: #2563eb; color: #fff; }
     .chat-box { height: 260px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
-    .msg { padding: 8px 10px; border-radius: 6px; margin-bottom: 8px; font-size: 14px; }
-    .msg.user { background: #dbeafe; white-space: pre-wrap; }
+    .msg { padding: 8px 10px; border-radius: 6px; margin-bottom: 8px; white-space: pre-wrap; font-size: 14px; }
+    .msg.user { background: #dbeafe; }
     .msg.ai { background: #dcfce7; }
-    .msg-text { white-space: pre-wrap; }
-    .copy-mini { margin-top: 6px; background: #1e293b; color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 5px; border: none; cursor: pointer; }
-    .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; }
     input[type="text"], textarea, select { width: 100%; padding: 9px; border: 1px solid #94a3b8; border-radius: 6px; font-family: inherit; font-size: 14px; }
-    .flex-grow { flex: 1; min-width: 190px; }
+    .flex-grow { flex: 1; min-width: 200px; }
     button { background: #0f766e; color: #fff; border: none; padding: 9px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    button.blue { background: #1d4ed8; }
-    button.purple { background: #7e22ce; }
     button.gray { background: #475569; }
     button.green { background: #15803d; }
-    button.amber { background: #b45309; }
-    button.red { background: #b91c1c; }
+    button.gold { background: #b45309; }
+    button.blue { background: #1d4ed8; }
     .approval { border: 1px dashed #d97706; background: #fffbeb; border-radius: 8px; padding: 10px; margin-bottom: 8px; }
-    .demo-card { border: 1px solid #99f6e4; background: #f0fdfa; border-radius: 10px; padding: 12px; margin-bottom: 10px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
-    th, td { border: 1px solid #cbd5e1; padding: 8px; text-align: right; }
-    th { background: #e2e8f0; }
+    .pipeline-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 10px; margin-bottom: 12px; }
     pre { background: #0f172a; color: #e2e8f0; padding: 10px; border-radius: 8px; overflow-x: auto; font-size: 12px; direction: ltr; text-align: left; }
     .footer { text-align: center; font-size: 13px; color: #475569; padding: 8px; }
   </style>
@@ -53,61 +46,35 @@
 <body>
   <div class="wrap">
     <div class="box">
-      <h1>مكتب الذكاء الاصطناعي والعملاء — طاقم 8 موظفين متكامل</h1>
-      <p>تشغيل مباشر عبر <strong>text.pollinations.ai</strong> مع محادثة مستقلة لكل موظف، منجز لتقرير التنفيذ والخطوة الفورية، سهيل للخطة الثلاثية البسيطة، فيصل للبحث، نور للتدريب، ونسخ احتياطي واستعادة JSON.</p>
-      <div class="auth-banner">
-        <strong>صلاحيات وبيانات المكتب المعتمدة:</strong> يعمل الفريق باسم <strong>المطور الأستاذ عمر حسان عبره</strong> (واتساب: <code>00967737219181</code> | بريد: <code>omarebrah2060@gmail.com</code>) مع بقاء الاعتماد النهائي تحت إشرافك.
-      </div>
-      <div class="backup-box">
-        <div class="row">
-          <strong>النسخ الاحتياطي للبيانات:</strong>
-          <button type="button" class="blue" id="exportBackupBtn">تصدير نسخة JSON</button>
-          <button type="button" class="gray" id="importBackupBtn">استعادة نسخة JSON</button>
-          <input type="file" id="backupFileInput" accept=".json,application/json" style="display:none;" />
-          <span id="backupStatus" style="font-size:12px; color:#0f766e;"></span>
-        </div>
-      </div>
+      <h1>مكتب الذكاء الاصطناعي والقيادة التنفيذية (ملف واحد متكامل)</h1>
+      <p>إدارة متكاملة بقيادة <strong>المدير التنفيذي (فيصل)</strong> ومطور المشاريع الربحية <strong>(زياد)</strong> لدراسة السوق، ابتكار المشاريع، تجهيز قنوات اليوتيوب والمحتوى، وإدارة الفريق عبر <strong>text.pollinations.ai</strong>.</p>
       <div class="tabs">
-        <button class="tab-btn active" data-tab="officeTab">1. المكتب والطاقم (8)</button>
-        <button class="tab-btn" data-tab="closerTab">2. منجز — تقرير التنفيذ</button>
-        <button class="tab-btn" data-tab="researchTab">3. فيصل — باحث العملاء</button>
-        <button class="tab-btn" data-tab="trainerTab">4. نور — تدريب الموظفين</button>
-        <button class="tab-btn" data-tab="approvalsTab">5. صندوق الموافقة</button>
-        <button class="tab-btn" data-tab="salesTab">6. عرض العملاء وواتساب</button>
-        <button class="tab-btn" data-tab="leadsTab">7. قائمة العملاء المحتملين</button>
-        <button class="tab-btn" data-tab="demosTab">8. نماذج العروض</button>
-        <button class="tab-btn" data-tab="cloudTab">9. العمل أثناء قفل الهاتف</button>
+        <button class="tab-btn active" data-tab="officeTab">1. القيادة والموظفون</button>
+        <button class="tab-btn" data-tab="approvalsTab">2. صندوق الموافقة</button>
+        <button class="tab-btn" data-tab="salesTab">3. عرض العملاء وواتساب</button>
+        <button class="tab-btn" data-tab="cloudTab">4. العمل الآلي في الخلفية</button>
       </div>
     </div>
 
-    <!-- 1. المكتب والطاقم -->
+    <!-- القسم 1: المكتب والموظفون -->
     <div id="officeTab" class="section active">
       <div class="box">
-        <div class="quick-box">
-          <h4>تنفيذ فوري للمواقف والردود</h4>
-          <div class="row" style="margin-bottom:8px;">
-            <input type="text" id="quickClientInput" class="flex-grow" placeholder="اسم العميل (مثال: ماجد الوصابي)" />
-            <input type="text" id="quickSituationInput" class="flex-grow" placeholder="ماذا قال العميل أو ما المطلوب؟ (مثال: يسأل عن السعر أو مشغول)" />
-            <button type="button" class="green" id="quickExecuteBtn">توليد الرد فوراً</button>
-          </div>
-        </div>
-
-        <div class="quick-box" style="background:#fffbeb; border-color:#fcd34d;">
-          <h4>سهيل — خطة يومية سهلة من 3 خطوات فقط</h4>
+        <!-- لوحة التشغيل التلقائي للمشاريع الربحية -->
+        <div class="pipeline-box">
+          <strong>🚀 غرفة إطلاق المشاريع الربحية (زياد + المدير التنفيذي فيصل):</strong>
+          <p style="margin: 4px 0 8px 0; font-size: 13px;">اضغط الزر ليقوم <b>زياد</b> بدراسة السوق واختيار مشروع ربحي يناسبك وتجهيز خطة قناة يوتيوب وفيديوهات، ثم يقوم <b>فيصل (المدير التنفيذي)</b> بمراجعتها وتوزيع المهام على بقية الفريق تلقائياً:</p>
           <div class="row">
-            <input type="text" id="sohailFocusInput" class="flex-grow" placeholder="موضوع اليوم (مثال: متابعة عملاء وجلب عملاء جدد بأقل جهد)" />
-            <button type="button" class="amber" id="runSohailPlanBtn">توليد خطة 3 خطوات</button>
-            <button type="button" class="gray" id="copySohailPlanBtn">نسخ الخطة</button>
+            <input type="text" id="nicheHintInput" class="flex-grow" placeholder="حدد مجالاً مفضلاً أو اتركه فارغاً ليختار زياد الأربح (مثال: تقنية، تعليم، بيئات 3D، قصص)..." />
+            <button id="autoVentureBtn" class="gold">⚡ تشغيل دورة ابتكار وإدارة مشروع ربحي</button>
           </div>
-          <div id="sohailPlanBox" style="margin-top:8px; white-space:pre-wrap; background:#fff; padding:8px; border-radius:6px; border:1px solid #fde68a;">اضغط «توليد خطة 3 خطوات» ليجهّز سهيل أسهل خطة لليوم...</div>
         </div>
 
-        <h3>اختر موظفاً من الطاقم للتكلم معه أو تكليفه بمهمة مباشرة</h3>
+        <h3>اختر موظفاً لإسناد مهمة (أو إرسال للكل)</h3>
         <div class="team-grid" id="teamGrid"></div>
-        <h3 id="currentAgentHeading">المحادثة مع: رامي — مدير العمليات</h3>
+        <h3 id="currentAgentHeading">المحادثة مع: فيصل — المدير التنفيذي (CEO)</h3>
         <div class="chat-box" id="chatBox"></div>
         <div class="row">
-          <input type="text" id="taskInput" class="flex-grow" placeholder="اكتب رسالتك أو المهمة الموجهة لهذا الموظف..." />
+          <input type="text" id="taskInput" class="flex-grow" placeholder="اكتب توجيهك للمدير التنفيذي أو للموظف المحدد..." />
           <button id="sendTaskBtn">إرسال المهمة</button>
           <button id="sendAllBtn" class="gray">إرسال للفريق</button>
           <button id="resetDataBtn" class="gray">مسح السجل</button>
@@ -115,171 +82,49 @@
       </div>
     </div>
 
-    <!-- 2. منجز — تقرير التنفيذ والخطوة التالية بضغطة زر -->
-    <div id="closerTab" class="section">
-      <div class="box">
-        <div class="closer-box">
-          <h3>منجز — تجميع إنجاز الفريق ومراجعة المخرجات وتحديد خطوتك</h3>
-          <p>يجمع «منجز» ما قام به الموظفون ويراجع جودته ويعطيك تقريراً واضحاً ومباشراً بما تم إنجازه وما عليك فعله الآن بضغطة زر:</p>
-          <input type="text" id="closerGoalInput" placeholder="هدف المهمة الحالية (مثال: تجهيز عرض وإرساله لعميل جديد)" style="margin-bottom:8px;" />
-          <div class="row">
-            <button type="button" class="green" id="runCloserBtn">توليد تقرير الإنجاز والمراجعة</button>
-            <button type="button" class="blue" id="copyCloserReportBtn">نسخ التقرير فوراً</button>
-            <button type="button" class="amber" id="goSalesFromCloserBtn">الانتقال لصفحة الإرسال والواتساب</button>
-            <button type="button" class="gray" id="goLeadsFromCloserBtn">فتح قائمة العملاء</button>
-          </div>
-        </div>
-        <h4>تقرير منجز النهائي:</h4>
-        <div class="chat-box" id="closerResultBox">اضغط «توليد تقرير الإنجاز والمراجعة» ليجمع منجز أعمال الفريق ويحدد خطوتك المباشرة...</div>
-      </div>
-    </div>
-
-    <!-- 3. فيصل — باحث العملاء -->
-    <div id="researchTab" class="section">
-      <div class="box">
-        <div class="research-box">
-          <h3>فيصل — باحث العملاء المحتملين والأسواق عبر الإنترنت</h3>
-          <p>زوّد فيصل بالمواصفات المطلوبة ليجهّز لك خطة بحث، أسماء منشآت ونماذج مستهدفة، وروابط بحث جاهزة في جوجل وخرائط جوجل:</p>
-          <div class="row" style="margin-bottom:8px;">
-            <input type="text" id="resCompanyType" class="flex-grow" placeholder="اسم الشركة أو نوع النشاط (مثال: مختبرات تحاليل / مكاتب سياحة)" />
-            <input type="text" id="resTraits" class="flex-grow" placeholder="الصفات المطلوبة (مثال: تفتقر لموقع حجز سريع / نشطة على فيسبوك)" />
-          </div>
-          <div class="row" style="margin-bottom:10px;">
-            <input type="text" id="resAudience" class="flex-grow" placeholder="الفئة المستهدفة (مثال: الأطباء، الطلاب، أصحاب المتاجر)" />
-            <input type="text" id="resCountry" class="flex-grow" placeholder="الدولة / المدينة (مثال: اليمن - الحديدة، أو السعودية، أو عُمان)" />
-          </div>
-          <div class="row">
-            <button type="button" class="blue" id="runResearchBtn">تشغيل فيصل للبحث وتجهيز القائمة</button>
-            <a id="googleSearchDirectBtn" target="_blank" style="text-decoration:none;"><button type="button" class="gray">فتح بحث جوجل المباشر</button></a>
-            <a id="mapsSearchDirectBtn" target="_blank" style="text-decoration:none;"><button type="button" class="green">فتح خرائط جوجل المباشرة</button></a>
-          </div>
-        </div>
-        <h4>نتيجة بحث فيصل:</h4>
-        <div class="chat-box" id="researchResultBox">املأ الخانات أعلاه واضغط «تشغيل فيصل للبحث وتجهيز القائمة»...</div>
-      </div>
-    </div>
-
-    <!-- 4. نور — تدريب الموظفين -->
-    <div id="trainerTab" class="section">
-      <div class="box">
-        <div class="trainer-box">
-          <h3>نور — مدربة الموظفين وتطوير المهارات</h3>
-          <p>اختر الموظف الذي تريد تطوير أدائه، وحدد المهارة أو الملاحظة المطلوبة؛ ستقوم <strong>نور</strong> بصياغة قاعدة تدريبية وحفظها تلقائياً في تعليمات ذلك الموظف:</p>
-          <div class="row" style="margin-bottom:8px;">
-            <select id="trainTargetAgent" class="flex-grow"></select>
-            <input type="text" id="trainFocusInput" class="flex-grow" placeholder="ما المهارة المطلوب تقويتها؟ (مثال: الإقناع الهادئ للعميل المتردد)" />
-            <button type="button" class="purple" id="runTrainBtn">تدريب الموظف وحفظ المهارة</button>
-          </div>
-        </div>
-        <h4>سجل التدريب والمهارات المكتسبة:</h4>
-        <div class="chat-box" id="trainerResultBox">اختر موظفاً واضغط «تدريب الموظف وحفظ المهارة» لتطوير أدائه...</div>
-      </div>
-    </div>
-
-    <!-- 5. صندوق الموافقة -->
+    <!-- القسم 2: صندوق الموافقة -->
     <div id="approvalsTab" class="section">
       <div class="box">
-        <h3>المخرجات الجاهزة بانتظار موافقتك</h3>
+        <h3>المخرجات والمشاريع الجاهزة بانتظار موافقتك</h3>
         <div id="approvalsList">لا توجد مخرجات بانتظار الاعتماد حالياً.</div>
       </div>
     </div>
 
-    <!-- 6. عرض العملاء وواتساب -->
+    <!-- القسم 3: عرض العملاء وواتساب -->
     <div id="salesTab" class="section">
       <div class="box">
-        <h3>مولّد رسائل العرض والمتابعة وواتساب</h3>
+        <h3>مولّد رسالة واتساب وعرض سريع للعملاء</h3>
         <div class="row" style="margin-bottom:8px;">
-          <input type="text" id="clientName" class="flex-grow" placeholder="اسم المنشأة المستهدفة (مثال: ماجد الوصابي)" />
-          <input type="text" id="targetPhone" class="flex-grow" placeholder="رقم واتساب العميل (مثال: 967734405060)" />
-          <input type="text" id="demoLink" class="flex-grow" placeholder="رابط المعاينة (افتراضي: نموذج مكتب المهيوبـي)" />
+          <input type="text" id="clientName" class="flex-grow" placeholder="اسم المنشأة أو العميل (مثال: مختبر الشفاء)" />
+          <input type="text" id="demoLink" class="flex-grow" placeholder="رابط المعاينة التجريبية (اختياري)" />
         </div>
-        <div class="row" style="margin-bottom:10px;">
-          <button id="generatePitchBtn">1. رسالة العرض الأول</button>
-          <button id="generateFollowupBtn" type="button" class="amber">2. رسالة متابعة بعد 48 ساعة</button>
-          <button id="generatePricingBtn" type="button" class="gray">3. عرض باقات الأسعار</button>
-          <button id="generateBudgetBtn" type="button" class="green">4. رد الميزانية المحدودة</button>
-        </div>
-        <textarea id="pitchOutput" rows="11">السلام عليكم ورحمة الله وبركاته أستاذ/دكتور ماجد الوصابي 👋
+        <button id="generatePitchBtn" style="margin-bottom:10px;">توليد الرسالة المخصصة</button>
+        <textarea id="pitchOutput" rows="10">السلام عليكم ورحمة الله وبركاته أستاذ/دكتور [اسم المنشأة] 👋
 
-صمّمنا معاينة رقمية تفاعلية خفيفة وسريعة تعمل على جميع الهواتف بأقل استهلاك للبيانات وبدون تحميل أي تطبيق، وتساعدكم على:
+جهّزنا معاينة رقمية تفاعلية سريعة وخفيفة مخصصة لـ [اسم المنشأة] تعمل على جميع الهواتف بدون تحميل أي تطبيق، وتساعدكم على:
 • عرض الخدمات والأقسام بوضوح يرفع ثقة الزوار.
-• الرد السريع على الاستفسارات وتوجيه الزائر للحجز أو التواصل مباشرة عبر واتساب.
-• تنظيم الطلبات وتخفيف ضغط الاستقبال اليومي.
+• الرد السريع على الاستفسارات وتوجيه الزائر لطلب الحجز مباشرة عبر واتساب.
+• تنظيم طلبات العملاء وتقليل ضغط الاستقبال.
 
-🔗 رابط المعاينة التجريبية: https://appi37oufxahjen61dp.teable.app
+🔗 رابط المعاينة التجريبية: [الرابط]
 
-يسعدنا تفعيل تجربة مجانية لمدة 7 أيام لتقييمها عملياً على أرض الواقع، ثم اعتمادها برسوم ميسّرة. هل يناسبكم إرسال تفاصيل الباقة؟
+يمكن تفعيل نسخة تجريبية مجانية لمدة 7 أيام باسم منشأتكم لتجربتها عملياً. هل يناسبكم إرسال تفاصيل الباقة؟
 
 المطور الأستاذ عمر حسان عبره
 واتساب: 00967737219181 | البريد: omarebrah2060@gmail.com</textarea>
         <div class="row" style="margin-top:8px;">
           <button id="copyPitchBtn" class="green">نسخ الرسالة</button>
-          <a id="waClientBtn" target="_blank" style="text-decoration:none;"><button type="button">إرسال للعميل عبر واتساب</button></a>
-          <a id="waSelfBtn" target="_blank" style="text-decoration:none;"><button type="button" class="gray">إرسال نسخة لواتسابي (00967737219181)</button></a>
+          <a id="waLinkBtn" target="_blank" style="text-decoration:none;"><button type="button">فتح واتساب مباشرة</button></a>
         </div>
       </div>
     </div>
 
-    <!-- 7. قائمة العملاء المحتملين -->
-    <div id="leadsTab" class="section">
-      <div class="box">
-        <h3>إدارة قائمة العملاء المحتملين وحالة التواصل</h3>
-        <div class="row" style="margin-bottom:8px;">
-          <input type="text" id="leadName" class="flex-grow" placeholder="اسم المنشأة أو العميل" />
-          <input type="text" id="leadPhone" class="flex-grow" placeholder="رقم واتساب العميل (مثال: 967734405060)" />
-          <input type="text" id="leadDemo" class="flex-grow" placeholder="رابط المعاينة (اختياري)" />
-          <select id="leadStatus" style="width:auto;">
-            <option value="جديد">جديد</option>
-            <option value="تم الإرسال">تم الإرسال</option>
-            <option value="متابعة">متابعة</option>
-            <option value="مهتم / تم الاتفاق">مهتم / تم الاتفاق</option>
-          </select>
-          <button id="addLeadBtn" class="green">إضافة عميل</button>
-          <button id="exportCsvBtn" type="button" class="gray">تصدير CSV</button>
-        </div>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead>
-              <tr>
-                <th>العميل / المنشأة</th>
-                <th>واتساب</th>
-                <th>الحالة</th>
-                <th>إجراءات سريعة</th>
-              </tr>
-            </thead>
-            <tbody id="leadsBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8. نماذج العروض -->
-    <div id="demosTab" class="section">
-      <div class="box">
-        <h3>نماذج العروض الجاهزة لإرسالها للعملاء</h3>
-        <div class="demo-card">
-          <h4>نموذج عرض: مكتب المهيوبـي</h4>
-          <p><strong>الرابط المباشر:</strong> <a href="https://appi37oufxahjen61dp.teable.app" target="_blank">https://appi37oufxahjen61dp.teable.app</a></p>
-          <p>مثال عملي جاهز للمعاينة السريعة وعرض الخدمات والتواصل المباشر مع العملاء.</p>
-          <div class="row">
-            <a href="https://appi37oufxahjen61dp.teable.app" target="_blank" style="text-decoration:none;">
-              <button type="button">فتح المعاينة</button>
-            </a>
-            <button type="button" class="green" onclick="loadPresetDemo('ماجد الوصابي', 'https://appi37oufxahjen61dp.teable.app', '967734405060')">استخدام في رسالة العميل</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 9. العمل أثناء قفل الهاتف -->
+    <!-- القسم 4: العمل أثناء قفل الهاتف -->
     <div id="cloudTab" class="section">
       <div class="box">
         <h3>كيف يعمل النظام وأنت قافل هاتفك؟</h3>
-        <p>ملف <strong>index.html</strong> يعمل في المتصفح عندما تفتحه، أما التشغيل التلقائي والهاتف مغلق فيتم عبر جدولة سحابية (مثل <strong>GitHub Actions</strong>) تستدعي <code>text.pollinations.ai</code> وتخزن النتائج في المستودع لتجدها جاهزة عند فتح هاتفك.</p>
-        <div class="row" style="margin-bottom:8px;">
-          <button type="button" id="copyWorkflowBtn" class="green">نسخ كود GitHub Actions</button>
-        </div>
-        <pre id="workflowCode">name: Auto AI Office Task
+        <p>ملف <strong>index.html</strong> يعمل في المتصفح عندما تفتحه، أما التشغيل التلقائي والهاتف مغلق (دراسة السوق، توليد أفكار الفيديوهات، وتقارير المدير التنفيذي) فيتم عبر <strong>GitHub Actions</strong> وتُحفظ النتائج جاهزة في المستودع:</p>
+        <pre>name: Auto AI CEO & Venture Office
 on:
   schedule:
     - cron: "0 6 * * *" # كل يوم الساعة 06:00 UTC
@@ -291,10 +136,10 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           mkdir -p reports
-          ENC=$(node -e "console.log(encodeURIComponent('أنت سكرتير المكتب. لخص خطوات متابعة العملاء اليومية في 4 نقاط مختصرة.'))")
-          curl -s "https://text.pollinations.ai/${ENC}" > "reports/daily-$(date +%F).md"
-          git config user.name "OfficeBot" && git config user.email "bot@example.com"
-          git add reports/ && git diff --staged --quiet || (git commit -m "تقرير $(date +%F)" && git push)</pre>
+          ENC=$(node -e "console.log(encodeURIComponent('أنت زياد مطور المشاريع وفيصل المدير التنفيذي. ادرس السوق اليوم واقترح فكرة فيديو يوتيوب مربح مع العنوان والوصف والسكريبت المختصر.'))")
+          curl -s "https://text.pollinations.ai/${ENC}" > "reports/venture-$(date +%F).md"
+          git config user.name "OfficeCEOBot" && git config user.email "bot@example.com"
+          git add reports/ && git diff --staged --quiet || (git commit -m "تقرير المشاريع $(date +%F)" && git push)</pre>
       </div>
     </div>
 
@@ -304,172 +149,66 @@ jobs:
   </div>
 
   <script>
-    const MY_WHATSAPP = "967737219181";
-    const DEFAULT_DEMO = "https://appi37oufxahjen61dp.teable.app";
-
     const AGENTS = [
+      {
+        id: "ceo",
+        type: "ceo",
+        badge: "القيادة العليا",
+        name: "فيصل — المدير التنفيذي (CEO)",
+        role: "إدارة الموظفين، اعتماد الخطط، وتوجيه التنفيذ",
+        perms: "يقود الفريق ويوزع المهام ويعرض الخلاصة عليك",
+        prompt: "أنت فيصل المدير التنفيذي للمكتب. مهمتك قيادة الفريق، تقييم أفكار المشاريع الربحية، تحويلها إلى خطة عمل تنفيذية، وتوزيع الأدوار على (زياد، رامي، سارة، عمر، طارق) بوضوح وحزم."
+      },
+      {
+        id: "venture",
+        type: "venture",
+        badge: "مبتكر المشاريع والربح",
+        name: "زياد — مطور المشاريع والربح الآلي",
+        role: "دراسة السوق، إنشاء قنوات يوتيوب، وسيناريوهات الفيديو",
+        perms: "يدرس السوق ويجهز المشروع والمحتوى للعرض على المدير التنفيذي",
+        prompt: "أنت زياد خبير دراسة السوق وبناء المشاريع الرقمية المربحة. مهمتك: 1) تحليل ما يطلبه السوق حالياً. 2) اختيار مشروع مربح يناسب مطوراً ومعلماً خبيراً بالتقنية والـ 3D والذكاء الاصطناعي. 3) تجهيز خطة إنشاء قناة يوتيوب (الاسم، الوصف، الكلمات المفتاحية) وكتابة سكريبت جاهز لأول فيديو قصير وطويل مع خطة النشر والربح."
+      },
       {
         id: "manager",
         name: "رامي — مدير العمليات",
-        role: "تقسيم المهام وتنسيق التنفيذ",
-        perms: "يخطط ويفوّض ولا يرسل للخارج دون اعتمادك",
-        prompt: "أنت رامي مدير العمليات. أجب بشكل مختصر جداً ومباشر للتنفيذ بدون مقدمات طويلة: قدّم خطوات عمل مرقمة وواضحة وفورية."
+        role: "تقسيم المهام وتنسيق التنفيذ اليومي",
+        perms: "يخطط وينفذ تحت إشراف المدير التنفيذي",
+        prompt: "أنت رامي مدير العمليات. قسّم خطة المدير التنفيذي إلى خطوات عملية مختصرة وواضحة وحدد الأولوية."
       },
       {
         id: "writer",
-        name: "سارة — مختصة العروض",
-        role: "صياغة رسائل وعروض العملاء",
-        perms: "مسودات العروض والرسائل فقط (واتساب/بريد)",
-        prompt: "أنت سارة مختصة العروض. اكتب نصاً مختصراً، مقنعاً، وجاهزاً للنسخ والإرسال فوراً دون حشو أو مقدمات."
+        name: "سارة — مختصة العروض والمحتوى",
+        role: "صياغة رسائل العملاء ووصف الفيديوهات والتسويق",
+        perms: "مسودات العروض والتسويق فقط",
+        prompt: "أنت سارة مختصة العروض والمحتوى التسويقي. اكتب وصفاً جذاباً أو رسالة مقنعة ومختصرة ومباشرة."
       },
       {
         id: "secretary",
         name: "عمر — السكرتير والمتابعة",
-        role: "تنظيم الجداول والمتابعة اليومية",
-        perms: "تنظيم المهام والتذكيرات والمتابعة فقط",
-        prompt: "أنت عمر السكرتير. لخّص المهام والمتابعة في نقاط قصيرة ومباشرة قابلة للتنفيذ فوراً دون مقدمات."
+        role: "تنظيم الجداول ومواعيد النشر والمتابعة",
+        perms: "تنظيم المهام وجدول النشر فقط",
+        prompt: "أنت عمر السكرتير. نظّم العمل في نقاط واضحة وجدول نشر ومتابعة عملي."
       },
       {
         id: "auditor",
         name: "طارق — مراجع الجودة والأمان",
-        role: "فحص المخرجات واكتشاف النواقص",
+        role: "فحص المشاريع والفيديوهات قبل النشر",
         perms: "مراجعة وتنقيح فقط بدون نشر",
-        prompt: "أنت طارق مراجع الجودة والأمان. اذكر أبرز ملاحظة عملية في سطر ثم قدّم نسخة مختصرة ومنقحة مباشرة."
-      },
-      {
-        id: "researcher",
-        name: "فيصل — باحث العملاء والأسواق",
-        role: "تحديد الفئات المستهدفة وقوائم البحث عن العملاء",
-        perms: "بحث واستكشاف وتجهيز قوائم استهداف فقط",
-        prompt: "أنت فيصل باحث العملاء والأسواق. بناءً على النشاط والصفات والفئة والدولة، قدّم: 1) أبرز 5 أنواع منشآت مستهدفة وأمثلة واقعية، 2) أفضل 3 عبارات بحث في جوجل وخرائط جوجل، 3) زاوية الإقناع المناسبة لهم باختصار شديد."
-      },
-      {
-        id: "trainer",
-        name: "نور — مدربة الفريق والتطوير",
-        role: "تدريب الموظفين وتحسين مهاراتهم باستمرار",
-        perms: "صياغة قواعد تدريب وتحسين أداء الفريق",
-        prompt: "أنت نور مدربة فريق الذكاء الاصطناعي. اكتب قاعدة تدريبية مركزة ومباشرة في 3 نقاط قصيرة لتحسين أداء الموظف المستهدف في المبيعات أو المتابعة أو البحث."
-      },
-      {
-        id: "closer",
-        name: "منجز — منسق الإنجاز والمراجعة",
-        role: "تجميع أعمال الفريق ومراجعتها وتحديد خطوتك الفورية",
-        perms: "تجميع ومراجعة المخرجات وتجهيز تقرير التنفيذ",
-        prompt: "أنت منجز، منسق الإنجاز ومراجعة المخرجات. اجمع ما قام به الفريق وراجعه، ثم اكتب تقريراً واضحاً ومختصراً يتضمن: 1) ملخص ما تم إنجازه، 2) ملاحظة مراجعة سريعة، 3) الخطوة المباشرة الجاهزة التي ينفذها المطور الآن."
-      },
-      {
-        id: "simplifier",
-        name: "سهيل — مساعد التبسيط والاختصار",
-        role: "تبسيط المهام والردود لتسهيل التنفيذ السريع",
-        perms: "تبسيط وتلخيص وتسهيل التنفيذ الفوري",
-        prompt: "أنت سهيل، مساعد التبسيط والاختصار. حوّل أي مهمة أو رد إلى خطوات سهلة جداً، قصيرة، وخفيفة للتنفيذ الفوري دون أي تعقيد أو حشو."
+        prompt: "أنت طارق مراجع الجودة والأمان. راجع المشروع أو المحتوى، اذكر ملاحظتين عمليتين لزيادة الربح والجودة، وقدّم صياغة منقحة."
       }
     ];
 
-    const STORAGE_KEY = "single_file_ai_office_v9";
-    let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"chats":{},"approvals":[],"leads":[],"trainingNotes":{}}');
-    if (!Array.isArray(state.leads)) state.leads = [];
-    if (!state.trainingNotes || typeof state.trainingNotes !== "object") state.trainingNotes = {};
+    const STORAGE_KEY = "single_file_ai_office_v2_ceo";
+    let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"chats":{},"approvals":[]}');
     let selectedAgent = AGENTS[0];
-    let latestCloserText = "";
-    let latestSohailPlanText = "";
 
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    function refreshAllViews() {
-      renderTeam();
-      renderChat();
-      renderApprovals();
-      renderLeads();
-      populateTrainerSelect();
-    }
-
-    // تصدير واستعادة نسخة احتياطية JSON
-    document.getElementById("exportBackupBtn").onclick = () => {
-      const payload = {
-        exportedAt: new Date().toISOString(),
-        developer: "المطور الأستاذ عمر حسان عبره",
-        data: state
-      };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `ai-office-backup-${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-      document.getElementById("backupStatus").textContent = "تم تصدير النسخة الاحتياطية بنجاح.";
-    };
-
-    document.getElementById("importBackupBtn").onclick = () => {
-      document.getElementById("backupFileInput").click();
-    };
-
-    document.getElementById("backupFileInput").onchange = (ev) => {
-      const file = ev.target.files && ev.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        try {
-          const parsed = JSON.parse(String(reader.result || "{}"));
-          const imported = parsed.data && typeof parsed.data === "object" ? parsed.data : parsed;
-          state = {
-            chats: imported.chats && typeof imported.chats === "object" ? imported.chats : {},
-            approvals: Array.isArray(imported.approvals) ? imported.approvals : [],
-            leads: Array.isArray(imported.leads) ? imported.leads : [],
-            trainingNotes: imported.trainingNotes && typeof imported.trainingNotes === "object" ? imported.trainingNotes : {}
-          };
-          saveState();
-          refreshAllViews();
-          document.getElementById("backupStatus").textContent = "تمت استعادة النسخة الاحتياطية بنجاح.";
-        } catch (err) {
-          document.getElementById("backupStatus").textContent = "تعذر قراءة ملف النسخة الاحتياطية.";
-        }
-      };
-      reader.readAsText(file, "utf-8");
-      ev.target.value = "";
-    };
-
-    function switchTab(tabId) {
-      document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tabId));
-      document.querySelectorAll(".section").forEach(s => s.classList.toggle("active", s.id === tabId));
-      if (tabId === "approvalsTab") renderApprovals();
-      if (tabId === "leadsTab") renderLeads();
-    }
-
-    function copyTextValue(text) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
-      } else {
-        fallbackCopy(text);
-      }
-    }
-
-    function fallbackCopy(text) {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      document.body.removeChild(ta);
-    }
-
-    window.copyChatMessage = function (agentId, index) {
-      const msgs = state.chats[agentId] || [];
-      if (msgs[index]) copyTextValue(msgs[index].text);
-    };
-
-    function getEffectivePrompt(agent) {
-      const extra = state.trainingNotes[agent.id] || [];
-      if (!extra.length) return agent.prompt;
-      return agent.prompt + "\nمهارات تدريبية مكتسبة من المدربة نور:\n- " + extra.join("\n- ");
-    }
-
     async function askPollinations(systemPrompt, taskText) {
       const fullPrompt =
-        "أجب بالعربية بوضوح واختصار شديد ومباشرة للتنفيذ دون مقدمات مطولة.\n" +
+        "أجب بالعربية بوضوح واحترافية عملية.\n" +
         "الدور: " + systemPrompt + "\n" +
         "المهمة: " + taskText;
       const url = "https://text.pollinations.ai/" + encodeURIComponent(fullPrompt);
@@ -478,50 +217,44 @@ jobs:
       return await res.text();
     }
 
+    // التبويبات
     document.querySelectorAll(".tab-btn").forEach(btn => {
-      btn.onclick = () => switchTab(btn.dataset.tab);
+      btn.onclick = () => {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+        if (btn.dataset.tab === "approvalsTab") renderApprovals();
+      };
     });
-
-    function selectAgentById(id) {
-      const found = AGENTS.find(a => a.id === id);
-      if (!found) return;
-      selectedAgent = found;
-      document.getElementById("currentAgentHeading").textContent = "المحادثة مع: " + selectedAgent.name;
-      renderTeam();
-      renderChat();
-    }
 
     function renderTeam() {
       const grid = document.getElementById("teamGrid");
       grid.innerHTML = "";
       AGENTS.forEach(agent => {
-        const trainedCount = (state.trainingNotes[agent.id] || []).length;
         const card = document.createElement("div");
-        card.className = "emp-card" + (agent.id === selectedAgent.id ? " selected" : "");
-        card.innerHTML = `<strong>${agent.name}</strong><div>${agent.role}</div><small>${agent.perms}</small>${trainedCount ? `<div><span class="badge">تحديثات تدريب: ${trainedCount}</span></div>` : ""}`;
-        card.onclick = () => selectAgentById(agent.id);
+        const typeClass = agent.type ? " " + agent.type : "";
+        card.className = "emp-card" + typeClass + (agent.id === selectedAgent.id ? " selected" : "");
+        const badgeHtml = agent.badge
+          ? `<span class="badge badge-${agent.type}">${agent.badge}</span><br>`
+          : "";
+        card.innerHTML = `${badgeHtml}<strong>${agent.name}</strong><div>${agent.role}</div><small>${agent.perms}</small>`;
+        card.onclick = () => {
+          selectedAgent = agent;
+          document.getElementById("currentAgentHeading").textContent = "المحادثة مع: " + agent.name;
+          renderTeam();
+          renderChat();
+        };
         grid.appendChild(card);
       });
-    }
-
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
     }
 
     function renderChat() {
       const box = document.getElementById("chatBox");
       const msgs = state.chats[selectedAgent.id] || [];
       box.innerHTML = msgs.length
-        ? msgs.map((m, idx) => {
-            if (m.role === "ai") {
-              return `<div class="msg ai"><div class="msg-text">${escapeHtml(m.text)}</div><button type="button" class="copy-mini" onclick="copyChatMessage('${selectedAgent.id}', ${idx})">نسخ الرد</button></div>`;
-            }
-            return `<div class="msg user">${escapeHtml(m.text)}</div>`;
-          }).join("")
-        : "<div>أرسل مهمة لهذا الموظف للبدء...</div>";
+        ? msgs.map(m => `<div class="msg ${m.role}">${m.text}</div>`).join("")
+        : "<div>أرسل مهمة لهذا الموظف أو شغّل دورة المشاريع الربحية للبدء...</div>";
       box.scrollTop = box.scrollHeight;
     }
 
@@ -550,9 +283,9 @@ jobs:
       }
       list.innerHTML = state.approvals.map(item => `
         <div class="approval">
-          <strong>${escapeHtml(item.agentName)}</strong> — <span>الحالة: ${escapeHtml(item.status)}</span>
-          <p><strong>المهمة:</strong> ${escapeHtml(item.task)}</p>
-          <div style="white-space:pre-wrap; background:#fff; padding:8px; border-radius:6px; margin-bottom:8px;">${escapeHtml(item.reply)}</div>
+          <strong>${item.agentName}</strong> — <span>الحالة: ${item.status}</span>
+          <p><strong>المهمة:</strong> ${item.task}</p>
+          <div style="white-space:pre-wrap; background:#fff; padding:8px; border-radius:6px; margin-bottom:8px;">${item.reply}</div>
           <button class="green" onclick="setApprovalStatus(${item.id}, 'معتمد')">اعتماد</button>
           <button class="gray" onclick="setApprovalStatus(${item.id}, 'مرفوض')">رفض</button>
         </div>
@@ -567,97 +300,46 @@ jobs:
       if (agent.id === selectedAgent.id) renderChat();
 
       try {
-        const reply = await askPollinations(getEffectivePrompt(agent), task);
+        const reply = await askPollinations(agent.prompt, task);
         state.chats[agent.id].pop();
         state.chats[agent.id].push({ role: "ai", text: reply });
         addApproval(agent.name, task, reply);
+        if (agent.id === selectedAgent.id) renderChat();
         return reply;
       } catch (e) {
         state.chats[agent.id].pop();
         state.chats[agent.id].push({ role: "ai", text: "تعذر إتمام الطلب الآن، يرجى المحاولة مرة أخرى." });
         saveState();
-        return null;
-      } finally {
         if (agent.id === selectedAgent.id) renderChat();
+        return null;
       }
     }
 
-    // سهيل — خطة يومية من 3 خطوات فقط
-    document.getElementById("runSohailPlanBtn").onclick = async () => {
-      const focus = document.getElementById("sohailFocusInput").value.trim() || "إرسال العروض ومتابعة العملاء بأقل جهد";
-      const planBox = document.getElementById("sohailPlanBox");
-      planBox.textContent = "سهيل يجهّز خطة من 3 خطوات فقط...";
-      const sohail = AGENTS.find(a => a.id === "simplifier");
-      const reply = await runForAgent(sohail, `ضع خطة يومية سهلة وواضحة من 3 خطوات مرقمة فقط (1، 2، 3) بدون مقدمات أو حشو حول: ${focus}`);
-      if (reply) {
-        latestSohailPlanText = reply;
-        planBox.textContent = reply;
-      } else {
-        planBox.textContent = "تعذر توليد الخطة الآن، حاول مرة أخرى.";
-      }
-    };
+    // دورة العمل المتكاملة: زياد يدرس ويبتكر المشروع -> فيصل المدير التنفيذي يدير ويوزع العمل
+    document.getElementById("autoVentureBtn").onclick = async () => {
+      const hint = document.getElementById("nicheHintInput").value.trim();
+      const ceoAgent = AGENTS.find(a => a.id === "ceo");
+      const ventureAgent = AGENTS.find(a => a.id === "venture");
 
-    document.getElementById("copySohailPlanBtn").onclick = () => {
-      if (latestSohailPlanText) copyTextValue(latestSohailPlanText);
-    };
+      // الانتقال لعرض محادثة زياد أولاً
+      selectedAgent = ventureAgent;
+      document.getElementById("currentAgentHeading").textContent = "المحادثة مع: " + ventureAgent.name;
+      renderTeam();
 
-    // 2. منجز — تجميع أعمال الفريق وتقديم تقرير + خطوة فورية
-    function collectRecentTeamOutputs() {
-      const items = [];
-      AGENTS.forEach(ag => {
-        if (ag.id === "closer") return;
-        const msgs = state.chats[ag.id] || [];
-        const lastAi = [...msgs].reverse().find(m => m.role === "ai" && m.text !== "جاري التنفيذ...");
-        if (lastAi) {
-          items.push(`${ag.name}: ${lastAi.text.slice(0, 320)}`);
-        }
-      });
-      return items.length ? items.join("\n---\n") : "لا توجد مخرجات حديثة مسجلة بعد من الموظفين؛ ابدأ بتقييم خطة العمل وإعطاء الخطوة الفورية للمطور.";
-    }
+      const ventureTask = hint
+        ? `ادرس السوق في مجال (${hint}) واختر أفضل فكرة مشروع ربحي، ثم جهز خطة إنشاء قناة يوتيوب وسكريبت أول فيديو جاهز للنشر لعرضه على المدير التنفيذي فيصل.`
+        : `ادرس السوق الحالي واختر أفضل مشروع ربحي يناسب صاحب المكتب، ثم جهز خطة إنشاء قناة يوتيوب وسكريبت أول فيديو جاهز للنشر لعرضه على المدير التنفيذي فيصل.`;
 
-    document.getElementById("runCloserBtn").onclick = async () => {
-      const goal = document.getElementById("closerGoalInput").value.trim() || "إنجاز عرض عميل وبدء التواصل والمتابعة بأقل جهد";
-      const box = document.getElementById("closerResultBox");
-      box.innerHTML = `<div class="msg ai">منجز يجمع أعمال الفريق ويراجعها ويجهّز التقرير الآن...</div>`;
+      const venturePlan = await runForAgent(ventureAgent, ventureTask);
+      if (!venturePlan) return;
 
-      const closer = AGENTS.find(a => a.id === "closer");
-      const summaryInput = collectRecentTeamOutputs();
-      const promptTask = `الهدف: ${goal}\n\nمخرجات الفريق المتاحة:\n${summaryInput}\n\nاجمع ما تم، راجعه، وقدّم تقرير إنجاز مختصراً وما يجب أن يفعله المطور الآن بخطوة واضحة.`;
-      const reply = await runForAgent(closer, promptTask);
+      // انتقال تلقائي للمدير التنفيذي فيصل لإدارة المشروع وتوزيع المهام
+      selectedAgent = ceoAgent;
+      document.getElementById("currentAgentHeading").textContent = "المحادثة مع: " + ceoAgent.name;
+      renderTeam();
 
-      if (reply) {
-        latestCloserText = reply;
-        box.innerHTML = `<div class="msg ai"><div class="msg-text">${escapeHtml(reply)}</div></div>`;
-      } else {
-        box.innerHTML = `<div class="msg ai">تعذر توليد تقرير منجز الآن، حاول مرة أخرى.</div>`;
-      }
-    };
-
-    document.getElementById("copyCloserReportBtn").onclick = () => {
-      if (latestCloserText) copyTextValue(latestCloserText);
-    };
-    document.getElementById("goSalesFromCloserBtn").onclick = () => switchTab("salesTab");
-    document.getElementById("goLeadsFromCloserBtn").onclick = () => switchTab("leadsTab");
-
-    document.getElementById("quickExecuteBtn").onclick = async () => {
-      const cName = document.getElementById("quickClientInput").value.trim() || "العميل";
-      const sit = document.getElementById("quickSituationInput").value.trim();
-      if (!sit) return;
-      const lower = sit.toLowerCase();
-      let targetAgentId = "simplifier";
-      if (lower.includes("بحث") || lower.includes("عملاء") || lower.includes("شرك")) {
-        targetAgentId = "researcher";
-      } else if (lower.includes("تدريب") || lower.includes("مهار")) {
-        targetAgentId = "trainer";
-      } else if (lower.includes("متابع") || lower.includes("جدول") || lower.includes("يوم")) {
-        targetAgentId = "secretary";
-      } else if (lower.includes("سعر") || lower.includes("عرض") || lower.includes("ميزان")) {
-        targetAgentId = "writer";
-      }
-      selectAgentById(targetAgentId);
-      const composedTask = `العميل/الموضوع: ${cName}. الموقف/الطلب: ${sit}. اكتب رداً سهلاً، واضحاً، ومختصراً جداً للتنفيذ الفوري.`;
-      document.getElementById("quickSituationInput").value = "";
-      await runForAgent(selectedAgent, composedTask);
+      const ceoTask = `قام زياد بدراسة السوق وتجهيز خطة المشروع التالية:\n\n${venturePlan}\n\nبصفتك المدير التنفيذي، راجع الخطة، اعتمدها، ووزع المهام التنفيذية بدقة على الموظفين (رامي للعمليات، سارة للتسويق، عمر للجدولة، طارق للجودة) لبدء العمل فوراً.`;
+      await runForAgent(ceoAgent, ceoTask);
     };
 
     document.getElementById("sendTaskBtn").onclick = async () => {
@@ -679,278 +361,50 @@ jobs:
     };
 
     document.getElementById("resetDataBtn").onclick = () => {
-      state = { chats: {}, approvals: [], leads: state.leads, trainingNotes: state.trainingNotes };
+      state = { chats: {}, approvals: [] };
       saveState();
       renderChat();
       renderApprovals();
     };
 
-    // 3. فيصل — باحث العملاء
-    function updateResearchSearchLinks() {
-      const cType = document.getElementById("resCompanyType").value.trim() || "مختبرات تحاليل طبية";
-      const country = document.getElementById("resCountry").value.trim() || "اليمن";
-      const q = `${cType} ${country} واتساب`;
-      document.getElementById("googleSearchDirectBtn").href = "https://www.google.com/search?q=" + encodeURIComponent(q);
-      document.getElementById("mapsSearchDirectBtn").href = "https://www.google.com/maps/search/" + encodeURIComponent(`${cType} ${country}`);
+    // تبويب العملاء وواتساب
+    function updateWaLink() {
+      const txt = document.getElementById("pitchOutput").value;
+      document.getElementById("waLinkBtn").href = "https://wa.me/?text=" + encodeURIComponent(txt);
     }
 
-    ["resCompanyType", "resCountry"].forEach(id => {
-      document.getElementById(id).addEventListener("input", updateResearchSearchLinks);
-    });
-    updateResearchSearchLinks();
-
-    document.getElementById("runResearchBtn").onclick = async () => {
-      const cType = document.getElementById("resCompanyType").value.trim() || "منشآت خدمية وعيادات ومختبرات";
-      const traits = document.getElementById("resTraits").value.trim() || "تحتاج واجهة تفاعلية سريعة وحجز مباشر عبر واتساب";
-      const audience = document.getElementById("resAudience").value.trim() || "أصحاب المنشآت والمرضى والطلاب";
-      const country = document.getElementById("resCountry").value.trim() || "اليمن ودول الخليج";
-      updateResearchSearchLinks();
-
-      const resBox = document.getElementById("researchResultBox");
-      resBox.innerHTML = `<div class="msg ai">فيصل يجهّز قائمة الاستهداف وخطة البحث الآن...</div>`;
-
-      const researcher = AGENTS.find(a => a.id === "researcher");
-      const query = `اسم الشركة/النشاط: ${cType} | الصفات المطلوبة: ${traits} | الفئة المستهدفة: ${audience} | الدولة/المدينة: ${country}. جهّز قائمة استهداف عملية، وعبارات بحث دقيقة، وكيفية استخراج أرقام واتساب المناسبة.`;
-      const reply = await runForAgent(researcher, query);
-      if (reply) {
-        resBox.innerHTML = `<div class="msg ai"><div class="msg-text">${escapeHtml(reply)}</div></div>`;
-      } else {
-        resBox.innerHTML = `<div class="msg ai">تعذر إتمام البحث الآن، حاول مرة أخرى.</div>`;
-      }
-    };
-
-    // 4. نور — مدربة الموظفين
-    function populateTrainerSelect() {
-      const sel = document.getElementById("trainTargetAgent");
-      sel.innerHTML = AGENTS.filter(a => a.id !== "trainer")
-        .map(a => `<option value="${a.id}">${a.name}</option>`)
-        .join("");
-    }
-    populateTrainerSelect();
-
-    document.getElementById("runTrainBtn").onclick = async () => {
-      const targetId = document.getElementById("trainTargetAgent").value;
-      const focus = document.getElementById("trainFocusInput").value.trim() || "تحسين سرعة الإقناع والاختصار وحفظ حقوق المطور";
-      const targetAgent = AGENTS.find(a => a.id === targetId);
-      const trainer = AGENTS.find(a => a.id === "trainer");
-      if (!targetAgent || !trainer) return;
-
-      const tBox = document.getElementById("trainerResultBox");
-      tBox.innerHTML = `<div class="msg ai">نور تُعدّ التوجيه التدريبي لـ ${escapeHtml(targetAgent.name)}...</div>`;
-
-      const promptTask = `درّب الموظف (${targetAgent.name} — ${targetAgent.role}) على المهارة التالية: ${focus}. أعطني قاعدة تدريبية مركزة ومختصرة جداً تُضاف مباشرة إلى تعليمات عمله.`;
-      const reply = await runForAgent(trainer, promptTask);
-      if (reply) {
-        if (!state.trainingNotes[targetId]) state.trainingNotes[targetId] = [];
-        state.trainingNotes[targetId].push(reply);
-        saveState();
-        renderTeam();
-        tBox.innerHTML = `<div class="msg ai"><div class="msg-text"><strong>تم تحديث مهارات ${escapeHtml(targetAgent.name)} بنجاح:</strong>\n\n${escapeHtml(reply)}</div></div>`;
-        document.getElementById("trainFocusInput").value = "";
-      } else {
-        tBox.innerHTML = `<div class="msg ai">تعذر إتمام جلسة التدريب الآن، حاول مرة أخرى.</div>`;
-      }
-    };
-
-    // 6. قوالب الرسائل وأزرار الواتساب
-    function getClientInputs() {
+    document.getElementById("generatePitchBtn").onclick = () => {
       const name = document.getElementById("clientName").value.trim() || "منشأتكم الموقرة";
-      const link = document.getElementById("demoLink").value.trim() || DEFAULT_DEMO;
-      const phone = document.getElementById("targetPhone").value.trim();
-      return { name, link, phone };
-    }
+      const link = document.getElementById("demoLink").value.trim() || "سيتم إرساله فور التجهيز";
+      document.getElementById("pitchOutput").value =
+`السلام عليكم ورحمة الله وبركاته أستاذ/دكتور ${name} 👋
 
-    function buildPitchText(name, link) {
-      return `السلام عليكم ورحمة الله وبركاته أستاذ/دكتور ${name} 👋
-
-صمّمنا معاينة رقمية تفاعلية خفيفة وسريعة تعمل على جميع الهواتف بأقل استهلاك للبيانات وبدون تحميل أي تطبيق، وتساعدكم على:
+جهّزنا معاينة رقمية تفاعلية سريعة وخفيفة مخصصة لـ ${name} تعمل على جميع الهواتف بدون تحميل أي تطبيق، وتساعدكم على:
 • عرض الخدمات والأقسام بوضوح يرفع ثقة الزوار.
-• الرد السريع على الاستفسارات وتوجيه الزائر للحجز أو التواصل مباشرة عبر واتساب.
-• تنظيم الطلبات وتخفيف ضغط الاستقبال اليومي.
+• الرد السريع على الاستفسارات وتوجيه الزائر لطلب الحجز مباشرة عبر واتساب.
+• تنظيم طلبات العملاء وتقليل ضغط الاستقبال.
 
 🔗 رابط المعاينة التجريبية: ${link}
 
-يسعدنا تفعيل تجربة مجانية لمدة 7 أيام لتقييمها عملياً على أرض الواقع، ثم اعتمادها برسوم ميسّرة. هل يناسبكم إرسال تفاصيل الباقة؟
+يمكن تفعيل نسخة تجريبية مجانية لمدة 7 أيام باسم منشأتكم لتجربتها عملياً. هل يناسبكم إرسال تفاصيل الباقة؟
 
 المطور الأستاذ عمر حسان عبره
 واتساب: 00967737219181 | البريد: omarebrah2060@gmail.com`;
-    }
-
-    function buildFollowupText(name, link) {
-      return `السلام عليكم ورحمة الله وبركاته أستاذ/دكتور ${name} 👋
-
-متابعة سريعة بخصوص المعاينة الرقمية التفاعلية التي أرسلناها لـ ${name} (${link}).
-يسعدنا تفعيل النسخة التجريبية المجانية لمدة 7 أيام باسم منشأتكم هذا الأسبوع لتشاهدوا تفاعل العملاء وسهولة الحجز عبر واتساب.
-
-هل تحبون أن أجهّزها لكم اليوم؟
-
-المطور الأستاذ عمر حسان عبره
-واتساب: 00967737219181`;
-    }
-
-    function buildPricingText(name) {
-      return `تفاصيل باقات الواجهة التفاعلية الذكية والحجز السريع لـ ${name}:
-
-1️⃣ الباقة التجريبية (مجاناً لمدة 7 أيام):
-• تجهيز واجهة معاينة باسم منشأتكم وربطها برقم واتساب الحجوزات.
-
-2️⃣ باقة التأسيس السريع (دفعة واحدة ميسّرة):
-• تصميم واجهة متكاملة بأقسامكم وخدماتكم وأوقات الدوام.
-• ربط مباشر بالحجز عبر واتساب + استضافة سريعة تعمل على أضعف الهواتف.
-
-3️⃣ الباقة المتكاملة + المتابعة الذكية:
-• كل مزايا باقة التأسيس + مساعد ذكي للرد الفوري على استفسارات الزوار وتحديثات مستمرة.
-
-للاعتماد والبدء بالتنفيذ خلال 24 ساعة، تواصلوا معنا مباشرة:
-المطور الأستاذ عمر حسان عبره
-واتساب: 00967737219181 | البريد: omarebrah2060@gmail.com`;
-    }
-
-    function buildLimitedBudgetText(name) {
-      return `أهلاً بك أستاذ/دكتور ${name} 👋
-
-نقدّر تماماً ظروف الميزانية، ولهذا صمّمنا المسار بطريقة مرنة تحفظ قيمة العمل وتحقق لكم الفائدة دون إرهاق:
-• نبدأ أولاً بـ تجربة مجانية لمدة 7 أيام لتجربة النظام عملياً على أرض الواقع.
-• عند الاعتماد، نبدأ بـ الباقة الأساسية الميسّرة (بالأقسام والخدمات الأساسية وربط واتساب المباشر) بتكلفة تأسيس واضحة ومحددة مسبقاً دون أي رسوم خفية أو التزامات إضافية غير متفق عليها.
-• ويمكن إضافة أي ميزات أو تحديثات مستقبلية لاحقاً حسب نمو المنشأة.
-
-بهذا الشكل تبدؤون بأقل تكلفة ممكنة وتضمنون وضوح الحقوق والنتائج من اليوم الأول. هل نبدأ بتفعيل النسخة التجريبية لكم؟
-
-المطور الأستاذ عمر حسان عبره
-واتساب: 00967737219181 | البريد: omarebrah2060@gmail.com`;
-    }
-
-    function updateWaLinks() {
-      const txt = document.getElementById("pitchOutput").value;
-      const cleanClientPhone = document.getElementById("targetPhone").value.replace(/\D/g, "");
-      document.getElementById("waClientBtn").href = cleanClientPhone
-        ? `https://wa.me/${cleanClientPhone}?text=${encodeURIComponent(txt)}`
-        : `https://wa.me/?text=${encodeURIComponent(txt)}`;
-      document.getElementById("waSelfBtn").href = `https://wa.me/${MY_WHATSAPP}?text=${encodeURIComponent(txt)}`;
-    }
-
-    window.loadPresetDemo = function (name, link, phone) {
-      document.getElementById("clientName").value = name;
-      document.getElementById("demoLink").value = link;
-      document.getElementById("targetPhone").value = phone || "";
-      document.getElementById("pitchOutput").value = buildPitchText(name, link);
-      updateWaLinks();
-      switchTab("salesTab");
-    };
-
-    document.getElementById("generatePitchBtn").onclick = () => {
-      const { name, link } = getClientInputs();
-      document.getElementById("pitchOutput").value = buildPitchText(name, link);
-      updateWaLinks();
-    };
-
-    document.getElementById("generateFollowupBtn").onclick = () => {
-      const { name, link } = getClientInputs();
-      document.getElementById("pitchOutput").value = buildFollowupText(name, link);
-      updateWaLinks();
-    };
-
-    document.getElementById("generatePricingBtn").onclick = () => {
-      const { name } = getClientInputs();
-      document.getElementById("pitchOutput").value = buildPricingText(name);
-      updateWaLinks();
-    };
-
-    document.getElementById("generateBudgetBtn").onclick = () => {
-      const { name } = getClientInputs();
-      document.getElementById("pitchOutput").value = buildLimitedBudgetText(name);
-      updateWaLinks();
+      updateWaLink();
     };
 
     document.getElementById("copyPitchBtn").onclick = () => {
-      copyTextValue(document.getElementById("pitchOutput").value);
+      const el = document.getElementById("pitchOutput");
+      el.select();
+      document.execCommand("copy");
     };
 
-    document.getElementById("copyWorkflowBtn").onclick = () => {
-      copyTextValue(document.getElementById("workflowCode").textContent);
-    };
+    document.getElementById("pitchOutput").addEventListener("input", updateWaLink);
+    updateWaLink();
 
-    document.getElementById("pitchOutput").addEventListener("input", updateWaLinks);
-    document.getElementById("targetPhone").addEventListener("input", updateWaLinks);
-    updateWaLinks();
-
-    // 7. قائمة العملاء المحتملين + تصدير CSV
-    function renderLeads() {
-      const body = document.getElementById("leadsBody");
-      if (!state.leads.length) {
-        body.innerHTML = `<tr><td colspan="4">لا يوجد عملاء مضافون بعد.</td></tr>`;
-        return;
-      }
-      body.innerHTML = state.leads.map((lead, idx) => `
-        <tr>
-          <td>${escapeHtml(lead.name)}</td>
-          <td>${escapeHtml(lead.phone || "-")}</td>
-          <td>
-            <select onchange="updateLeadStatus(${idx}, this.value)" style="width:auto;">
-              <option value="جديد" ${lead.status === "جديد" ? "selected" : ""}>جديد</option>
-              <option value="تم الإرسال" ${lead.status === "تم الإرسال" ? "selected" : ""}>تم الإرسال</option>
-              <option value="متابعة" ${lead.status === "متابعة" ? "selected" : ""}>متابعة</option>
-              <option value="مهتم / تم الاتفاق" ${lead.status === "مهتم / تم الاتفاق" ? "selected" : ""}>مهتم / تم الاتفاق</option>
-            </select>
-          </td>
-          <td>
-            <button type="button" onclick="prepareLeadPitch(${idx})">تجهيز عرض</button>
-            <button type="button" class="red" onclick="deleteLead(${idx})">حذف</button>
-          </td>
-        </tr>
-      `).join("");
-    }
-
-    document.getElementById("addLeadBtn").onclick = () => {
-      const name = document.getElementById("leadName").value.trim();
-      const phone = document.getElementById("leadPhone").value.trim();
-      const demo = document.getElementById("leadDemo").value.trim() || DEFAULT_DEMO;
-      const status = document.getElementById("leadStatus").value;
-      if (!name) return;
-      state.leads.unshift({ name, phone, demo, status });
-      saveState();
-      document.getElementById("leadName").value = "";
-      document.getElementById("leadPhone").value = "";
-      document.getElementById("leadDemo").value = "";
-      renderLeads();
-    };
-
-    function escapeCsv(val) {
-      return `"${String(val || "").replace(/"/g, '""')}"`;
-    }
-
-    document.getElementById("exportCsvBtn").onclick = () => {
-      const headers = ["العميل / المنشأة", "واتساب", "رابط المعاينة", "الحالة"];
-      const rows = state.leads.map(l => [l.name, l.phone, l.demo, l.status].map(escapeCsv).join(","));
-      const csvContent = "\uFEFF" + [headers.map(escapeCsv).join(","), ...rows].join("\n");
-      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "leads-ai-office.csv";
-      a.click();
-      URL.revokeObjectURL(url);
-    };
-
-    window.updateLeadStatus = function (idx, status) {
-      if (!state.leads[idx]) return;
-      state.leads[idx].status = status;
-      saveState();
-    };
-
-    window.deleteLead = function (idx) {
-      state.leads.splice(idx, 1);
-      saveState();
-      renderLeads();
-    };
-
-    window.prepareLeadPitch = function (idx) {
-      const lead = state.leads[idx];
-      if (!lead) return;
-      window.loadPresetDemo(lead.name, lead.demo || DEFAULT_DEMO, lead.phone);
-    };
-
-    refreshAllViews();
+    renderTeam();
+    renderChat();
+    renderApprovals();
   </script>
 </body>
 </html>
