@@ -37,9 +37,13 @@
     button.green { background: #15803d; }
     button.gold { background: #b45309; }
     button.blue { background: #1d4ed8; }
+    button.quick-btn { background: #0f766e; font-size: 12px; padding: 7px 11px; }
+    button.quick-btn.ceo-q { background: #b45309; }
+    button.quick-btn.venture-q { background: #1d4ed8; }
     .approval { border: 1px dashed #d97706; background: #fffbeb; border-radius: 8px; padding: 10px; margin-bottom: 8px; }
     .pipeline-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 10px; margin-bottom: 12px; }
     .brief-box { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 13px; }
+    .quick-bar { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; margin-bottom: 12px; }
     pre { background: #0f172a; color: #e2e8f0; padding: 10px; border-radius: 8px; overflow-x: auto; font-size: 12px; direction: ltr; text-align: left; }
     .footer { text-align: center; font-size: 13px; color: #475569; padding: 8px; }
   </style>
@@ -79,6 +83,16 @@
             <input type="text" id="nicheHintInput" class="flex-grow" placeholder="حدد مجالاً مفضلاً أو اتركه فارغاً ليختار زياد الأربح (مثال: غرف وقاعات 3D، عيادات ومختبرات، تعليم، تقنية)..." />
             <button id="autoVentureBtn" class="gold">⚡ تشغيل دورة ابتكار وإدارة مشروع ربحي</button>
           </div>
+        </div>
+
+        <!-- أزرار التوجيه السريع لكل موظف -->
+        <div class="quick-bar">
+          <div style="font-weight:bold; font-size:13px; margin-bottom:6px;">⚡ أزرار التوجيه السريع الفردي (اختر الموظف لتعبئة توجيهه المخصص فوراً):</div>
+          <div class="row" id="quickDirectivesRow"></div>
+          <label style="display:inline-flex; align-items:center; gap:6px; margin-top:8px; font-size:12px; cursor:pointer;">
+            <input type="checkbox" id="autoSendQuickCheck" />
+            <span>إرسال التوجيه للموظف تلقائياً فور الضغط على زره</span>
+          </label>
         </div>
 
         <h3>اختر موظفاً لإسناد مهمة (أو إرسال للكل)</h3>
@@ -176,6 +190,8 @@ jobs:
         name: "فيصل — المدير التنفيذي (CEO)",
         role: "إدارة الموظفين، اعتماد الخطط، وتوجيه التنفيذ",
         perms: "يقود الفريق ويوزع المهام ويعرض الخلاصة عليك",
+        quickLabel: "توجيه فيصل (القيادة)",
+        quickDirective: "يا فيصل، بصفتك المدير التنفيذي، اضبط خطة الـ 90 يوماً للنسخة العملية الخفيفة من Fusion Studio (غرف وقاعات ومعارض وعيادات 3D سريعة على الهواتف)، وحدد معايير قبول المخرجات اليومية لكل عضو قبل عرضها في صندوق الموافقة.",
         prompt: "أنت فيصل المدير التنفيذي للمكتب. مهمتك قيادة الفريق، تقييم أفكار المشاريع الربحية، التركيز على نسخة أولية خفيفة وسريعة وقابلة للربح فوراً (غرف وقاعات ومعارض وعيادات 3D، باقات واضحة، تجربة 7 أيام، وتقسيم الملفات للأجهزة الضعيفة)، وتوزيع الأدوار على (زياد، رامي، سارة، عمر، طارق) بوضوح وحزم."
       },
       {
@@ -185,6 +201,8 @@ jobs:
         name: "زياد — مطور المشاريع والربح الآلي",
         role: "دراسة السوق، إنشاء قنوات يوتيوب، وسيناريوهات الفيديو",
         perms: "يدرس السوق ويجهز المشروع والمحتوى للعرض على المدير التنفيذي",
+        quickLabel: "توجيه زياد (السوق والربح)",
+        quickDirective: "يا زياد، حدد أسرع 3 قطاعات طلباً للغرف والمعارض الافتراضية الخفيفة (عيادات ومختبرات، مدارس، متاجر)، وضع خطة محتوى لقناة يوتيوب تعرض نماذج عملية قصيرة تقود العميل لطلب تجربة 7 أيام.",
         prompt: "أنت زياد خبير دراسة السوق وبناء المشاريع الرقمية المربحة. مهمتك: 1) تحليل ما يطلبه السوق حالياً. 2) اختيار مشروع مربح وعملي يناسب مطوراً ومعلماً خبيراً بالـ 3D والذكاء الاصطناعي بنسخة أولية خفيفة وباقات واضحة. 3) تجهيز خطة إنشاء قناة يوتيوب (الاسم، الوصف، الكلمات المفتاحية) وكتابة سكريبت جاهز لأول فيديو قصير وطويل مع خطة النشر والربح."
       },
       {
@@ -192,6 +210,8 @@ jobs:
         name: "رامي — مدير العمليات",
         role: "تقسيم المهام وتنسيق التنفيذ اليومي",
         perms: "يخطط وينفذ تحت إشراف المدير التنفيذي",
+        quickLabel: "توجيه رامي (العمليات)",
+        quickDirective: "يا رامي، قسّم بنية المشروع والملفات إلى وحدات خفيفة ومستقلة لمنع الثقل أو الشاشات السوداء على الهواتف والأجهزة الضعيفة، وجهّز خطة بناء أول 3 نماذج عرض (قاعة دراسية، معرض تجاري، عيادة/مختبر).",
         prompt: "أنت رامي مدير العمليات. قسّم خطة المدير التنفيذي إلى خطوات عملية مختصرة وواضحة وحدد الأولوية، مع التركيز على تقسيم الملفات والوحدات لضمان سرعة الأداء وتجنب الثقل أو الشاشات السوداء على الأجهزة الضعيفة."
       },
       {
@@ -199,6 +219,8 @@ jobs:
         name: "سارة — مختصة العروض والمحتوى",
         role: "صياغة رسائل العملاء ووصف الفيديوهات والتسويق",
         perms: "مسودات العروض والتسويق فقط",
+        quickLabel: "توجيه سارة (العروض)",
+        quickDirective: "يا سارة، صِغي 3 نماذج رسائل واتساب وعروض تعريفية مخصصة (للعيادات والمختبرات، للمدارس، وللمتاجر) تبرز الواجهة المشرقة وسرعة الفتح على الجوال وعرض التجربة المجانية 7 أيام.",
         prompt: "أنت سارة مختصة العروض والمحتوى التسويقي. اكتب وصفاً جذاباً أو رسالة مقنعة ومختصرة ومباشرة للعملاء أو الفيديوهات، مع إبراز المعاينة الخفيفة وعرض التجربة المجانية لمدة 7 أيام."
       },
       {
@@ -206,6 +228,8 @@ jobs:
         name: "عمر — السكرتير والمتابعة",
         role: "تنظيم الجداول ومواعيد النشر والمتابعة",
         perms: "تنظيم المهام وجدول النشر فقط",
+        quickLabel: "توجيه عمر (الجدولة)",
+        quickDirective: "يا عمر، أعدّ جدولاً يومياً منظماً للتواصل مع 15 عميلاً محتملاً ومتابعتهم بعد 48 ساعة، مع جدول زمني واضح لتسليم النماذج الثلاثة ومراجعتها.",
         prompt: "أنت عمر السكرتير. نظّم العمل في نقاط واضحة وجدول نشر ومتابعة عملي، بما في ذلك متابعة العملاء والمواعيد النهائية للتسليم."
       },
       {
@@ -213,11 +237,13 @@ jobs:
         name: "طارق — مراجع الجودة والأمان",
         role: "فحص المشاريع والفيديوهات قبل النشر",
         perms: "مراجعة وتنقيح فقط بدون نشر",
+        quickLabel: "توجيه طارق (الجودة)",
+        quickDirective: "يا طارق، ضع قائمة فحص جودة شاملة لاختبار سرعة التحميل وسلاسة الحركة على الهواتف والأجهزة الضعيفة، والتحقق من وضوح الروابط وبيانات التواصل قبل الاعتماد في صندوق الموافقة.",
         prompt: "أنت طارق مراجع الجودة والأمان. راجع المشروع أو المحتوى، اذكر ملاحظتين عمليتين لزيادة الربح والجودة وسرعة التشغيل على الجوال، وقدّم صياغة منقحة."
       }
     ];
 
-    const STORAGE_KEY = "single_file_ai_office_v2_ceo_plus";
+    const STORAGE_KEY = "single_file_ai_office_v3_quick_dirs";
     let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"chats":{},"approvals":[]}');
     let selectedAgent = AGENTS[0];
 
@@ -246,6 +272,32 @@ jobs:
       };
     });
 
+    function renderQuickDirectives() {
+      const row = document.getElementById("quickDirectivesRow");
+      row.innerHTML = "";
+      AGENTS.forEach(agent => {
+        const btn = document.createElement("button");
+        const extraClass = agent.type === "ceo" ? " ceo-q" : (agent.type === "venture" ? " venture-q" : "");
+        btn.className = "quick-btn" + extraClass;
+        btn.textContent = agent.quickLabel;
+        btn.onclick = async () => {
+          selectedAgent = agent;
+          document.getElementById("currentAgentHeading").textContent = "المحادثة مع: " + agent.name;
+          renderTeam();
+          renderChat();
+          const input = document.getElementById("taskInput");
+          if (document.getElementById("autoSendQuickCheck").checked) {
+            input.value = "";
+            await runForAgent(agent, agent.quickDirective);
+          } else {
+            input.value = agent.quickDirective;
+            input.focus();
+          }
+        };
+        row.appendChild(btn);
+      });
+    }
+
     function renderTeam() {
       const grid = document.getElementById("teamGrid");
       grid.innerHTML = "";
@@ -272,7 +324,7 @@ jobs:
       const msgs = state.chats[selectedAgent.id] || [];
       box.innerHTML = msgs.length
         ? msgs.map(m => `<div class="msg ${m.role}">${m.text}</div>`).join("")
-        : "<div>أرسل مهمة لهذا الموظف أو شغّل دورة المشاريع الربحية للبدء...</div>";
+        : "<div>أرسل مهمة لهذا الموظف أو اضغط أحد أزرار التوجيه السريع أعلاه للبدء...</div>";
       box.scrollTop = box.scrollHeight;
     }
 
@@ -426,6 +478,7 @@ jobs:
     document.getElementById("pitchOutput").addEventListener("input", updateWaLink);
     updateWaLink();
 
+    renderQuickDirectives();
     renderTeam();
     renderChat();
     renderApprovals();
